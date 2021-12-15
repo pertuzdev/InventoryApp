@@ -1,20 +1,18 @@
 import React from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-} from 'react-native';
+import {StyleSheet} from 'react-native';
+
+import {NavigationContainer} from '@react-navigation/native';
+
+import HomeStack from './src/navigation/HomeStack';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
 
 const App = () => {
   return (
-    <SafeAreaView>
-      <StatusBar />
-      <ScrollView contentInsetAdjustmentBehavior="automatic">
-        <Text>Hi!</Text>
-      </ScrollView>
-    </SafeAreaView>
+    <SafeAreaProvider>
+      <NavigationContainer>
+        <HomeStack />
+      </NavigationContainer>
+    </SafeAreaProvider>
   );
 };
 
