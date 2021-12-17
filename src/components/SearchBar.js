@@ -12,7 +12,7 @@ import {Colors} from '../styles/Colors';
 
 export default function SearchBar({
   updateSearch = val => console.log(val, 'Value'),
-  style = {marginTop: 24},
+  style = {},
   onPress = () => console.log('SearchBar pressed'),
   focus = false,
 }) {
@@ -93,20 +93,17 @@ const styles = StyleSheet.create({
   },
   searchContainer: {
     backgroundColor: Colors.lightGray,
-    width: '90%',
+    width: '100%',
     height: 40,
     flexDirection: 'row',
     borderRadius: 15,
   },
   container: {
-    height: 80,
-    alignItems: 'center',
     elevation: 20,
     shadowColor: '#000',
     shadowOffset: {width: -2, height: 4},
     shadowOpacity: 0.2,
     shadowRadius: 3,
-
     // height: '100%', width: '100%'
   },
 });

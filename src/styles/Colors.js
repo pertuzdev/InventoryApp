@@ -5,4 +5,5 @@ export const Colors = {
   blackGray: '#222222',
   darkGray: '#79747E',
   red: '#DC3545',
+  shadowColor: '#7090B0',
 };

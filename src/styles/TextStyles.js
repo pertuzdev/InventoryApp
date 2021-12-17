@@ -9,7 +9,7 @@ export const TextStyles = {
   standardRegularTxt: {
     fontFamily: 'Roboto-Regular',
     fontSize: 14,
-    color: 'red',
+    color: Colors.blackGray,
   },
   buttonTxt: {
     fontFamily: 'Roboto-Bold',
@@ -25,5 +25,10 @@ export const TextStyles = {
     fontFamily: 'Roboto-Regular',
     fontSize: 12,
     color: Colors.blackGray,
+  },
+  placeholder: {
+    fontFamily: 'Roboto-Regular',
+    fontSize: 12,
+    color: Colors.gray,
   },
 };
