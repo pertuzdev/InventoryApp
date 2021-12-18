@@ -1,24 +1,49 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import Button from '../../components/Button/Button';
+import CardItem from '../../components/CardItem';
 import Header from '../../components/Header';
-import InfoCard from '../../components/InfoCard';
-import ProfilePic from '../../components/ProfilePic';
-import SearchBar from '../../components/SearchBar';
 
 import {TextStyles} from '../../styles/TextStyles';
 
 export default function HomeScreen() {
   return (
     <SafeAreaView style={styles.container}>
-      <Header />
+      <Header style={styles.header} />
+      {/*<View>
+        <Text style={[styles.placeholder, TextStyles.placeholder]}>
+          No hay productos agregados
+        </Text>
+      </View>*/}
+      <View style={styles.content}>
+        <CardItem />
+      </View>
+      <View style={styles.btnContainer}>
+        <Button size="lg" style={styles.button} />
+      </View>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    padding: 16,
     flex: 1,
+    justifyContent: 'space-between',
+  },
+  header: {
+    margin: 16,
+    marginTop: 20,
+  },
+  placeholder: {
+    textAlign: 'center',
+  },
+  content: {
+    flex: 1,
+    justifyContent: 'flex-start',
+  },
+  button: {},
+  btnContainer: {
+    padding: 16,
   },
 });

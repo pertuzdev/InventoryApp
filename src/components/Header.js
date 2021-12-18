@@ -1,7 +1,7 @@
 import React from 'react';
-import {StyleSheet, View, Text} from 'react-native';
+import {StyleSheet, View, Text, Image} from 'react-native';
 
-import ProfilePic from './ProfilePic';
+import AppImage from './AppImage';
 import AppText from './AppText';
 
 import {Colors} from '../styles/Colors';
@@ -10,10 +10,13 @@ import SearchBar from './SearchBar';
 import InfoCard from './InfoCard';
 
 export default function Header({style}) {
+  const src = require('../assets/icons/ic_profile.png');
   return (
     <View style={[styles.container, style]}>
       <View style={styles.wrapper}>
-        <ProfilePic />
+        <View>
+          <Image source={src} />
+        </View>
         <View style={styles.txtWrapper}>
           <Text style={TextStyles.title}>Variedades Alex</Text>
           <Text style={TextStyles.cardDescription}>Perfil / Propietario</Text>
@@ -29,12 +32,14 @@ export default function Header({style}) {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    marginTop: 4,
-  },
+  container: {},
   wrapper: {
     flexDirection: 'row',
     alignItems: 'center',
+  },
+  imgCont: {
+    width: '20%',
+    height: '90%',
   },
   txtWrapper: {
     marginLeft: 20,

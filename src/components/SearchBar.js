@@ -99,11 +99,6 @@ const styles = StyleSheet.create({
     borderRadius: 15,
   },
   container: {
-    elevation: 20,
-    shadowColor: '#000',
-    shadowOffset: {width: -2, height: 4},
-    shadowOpacity: 0.2,
-    shadowRadius: 3,
     // height: '100%', width: '100%'
   },
 });

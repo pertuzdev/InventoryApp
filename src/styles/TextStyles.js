@@ -8,22 +8,21 @@ export const TextStyles = {
   },
   standardRegularTxt: {
     fontFamily: 'Roboto-Regular',
-    fontSize: 14,
+    fontSize: 15,
     color: Colors.blackGray,
   },
   buttonTxt: {
     fontFamily: 'Roboto-Bold',
-    fontSize: 14,
-    color: 'white',
+    fontSize: 15,
   },
   cardTitle: {
-    fontFamily: 'Roboto-Bold',
-    fontSize: 14,
+    fontFamily: 'Roboto-Medium',
+    fontSize: 18,
     color: Colors.blackGray,
   },
   cardDescription: {
     fontFamily: 'Roboto-Regular',
-    fontSize: 12,
+    fontSize: 13,
     color: Colors.blackGray,
   },
   placeholder: {
