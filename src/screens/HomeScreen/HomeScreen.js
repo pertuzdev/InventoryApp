@@ -7,7 +7,10 @@ import Header from '../../components/Header';
 
 import {TextStyles} from '../../styles/TextStyles';
 
-export default function HomeScreen() {
+export default function HomeScreen({navigation}) {
+  const handlePress = () => {
+    navigation.navigate('CreateItem');
+  };
   return (
     <SafeAreaView style={styles.container}>
       <Header style={styles.header} />
@@ -20,7 +23,13 @@ export default function HomeScreen() {
         <CardItem />
       </View>
       <View style={styles.btnContainer}>
-        <Button size="lg" style={styles.button} />
+        <Button
+          size="lg"
+          style={styles.button}
+          navigation={navigation}
+          label="Crear Producto"
+          onPress={handlePress}
+        />
       </View>
     </SafeAreaView>
   );

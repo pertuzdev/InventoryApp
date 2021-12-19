@@ -9,7 +9,7 @@ import {
 import {Colors} from '../../styles/Colors';
 import {TextStyles} from '../../styles/TextStyles';
 
-export default function TextButton() {
+export default function TextButton({label = 'label'}) {
   const fadeAnim = useRef(new Animated.Value(1)).current;
 
   const handlePressIn = () => {
@@ -32,9 +32,7 @@ export default function TextButton() {
       onPressIn={handlePressIn}
       onPressOut={handlePressOut}>
       <Animated.View style={[styles.container, {opacity: fadeAnim}]}>
-        <Text style={[styles.btnText, TextStyles.buttonTxt]}>
-          Crear Producto
-        </Text>
+        <Text style={[styles.btnText, TextStyles.buttonTxt]}>{label}</Text>
       </Animated.View>
     </TouchableWithoutFeedback>
   );

@@ -6,15 +6,20 @@ import Ripple from 'react-native-material-ripple';
 import {Colors} from '../../styles/Colors';
 import {TextStyles} from '../../styles/TextStyles';
 
-export default function Button({size = 'sm', style}) {
+export default function Button({
+  navigation,
+  onPress,
+  size = 'sm',
+  label = 'label',
+  style,
+}) {
   return (
     <Ripple
       style={[styles(size).container, style]}
       rippleContainerBorderRadius={15}
-      rippleDuration={600}>
-      <Text style={[styles().btnText, TextStyles.buttonTxt]}>
-        Crear Producto
-      </Text>
+      rippleDuration={600}
+      onPress={onPress}>
+      <Text style={[styles().btnText, TextStyles.buttonTxt]}>{label}</Text>
     </Ripple>
   );
 }
