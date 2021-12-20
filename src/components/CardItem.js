@@ -6,7 +6,7 @@ import AppImage from './AppImage';
 import {Colors} from '../styles/Colors';
 import {TextStyles} from '../styles/TextStyles';
 
-export default function CardItem({style}) {
+export default function CardItem({style, name, stock}) {
   const src = require('../assets/images/card_image.png');
 
   return (
@@ -18,9 +18,9 @@ export default function CardItem({style}) {
           <Image style={styles.img} source={src} />
         </View>
         <View style={styles.txtWrapper}>
-          <Text style={TextStyles.cardTitle}>Vegetables</Text>
+          <Text style={TextStyles.cardTitle}>{name}</Text>
           <Text style={[styles.cardDescription, TextStyles.cardDescription]}>
-            5 Disponibles
+            {`${stock} Disponibles`}
           </Text>
         </View>
         <View style={styles.arrow}>
