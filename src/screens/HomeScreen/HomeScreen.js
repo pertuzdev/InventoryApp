@@ -1,6 +1,9 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
+
+import firestore from '@react-native-firebase/firestore';
+
 import Button from '../../components/Button/Button';
 import CardItem from '../../components/CardItem';
 import Header from '../../components/Header';
@@ -8,6 +11,19 @@ import Header from '../../components/Header';
 import {TextStyles} from '../../styles/TextStyles';
 
 export default function HomeScreen({navigation}) {
+  useEffect(() => {
+    const getItems = async () => {
+      const items = await firestore().collection('items').get();
+      const item = await firestore()
+        .collection('items')
+        .doc('OpLmuQ6sFixccXHi7jDP')
+        .get();
+      console.log(items, 'items');
+      console.log(item, 'item');
+    };
+    getItems();
+  });
+
   const handlePress = () => {
     navigation.navigate('CreateItem');
   };
