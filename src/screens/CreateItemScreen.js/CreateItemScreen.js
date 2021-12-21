@@ -24,7 +24,9 @@ export default function CreateItemScreen() {
     },
   });
 
-  const handleSave = data => console.log(data, 'dataToSave');
+  const handleSave = data => {
+    console.log(data, 'dataToSave');
+  };
   return (
     <View style={styles.container}>
       <ScrollView style={styles.scrollCont}>

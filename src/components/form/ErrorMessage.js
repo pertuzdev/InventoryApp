@@ -17,7 +17,8 @@ const ErrorMessage = ({errors, name}) => {
 const styles = StyleSheet.create({
   errorTxt: {
     fontSize: 10,
-    color: Colors.primaryRed,
+    color: Colors.red,
+    marginLeft: 8,
   },
 });
 
