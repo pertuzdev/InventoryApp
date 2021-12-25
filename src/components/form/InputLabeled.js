@@ -13,9 +13,10 @@ export default function InputLabeled({
   rules = {},
   control,
   placeholder = '',
+  defaultValue = '',
   errors,
+  keyboardType,
 }) {
-  console.log(inputArea, 'testing');
   return (
     <View>
       <Text style={styles.label}>{label}</Text>
@@ -27,9 +28,10 @@ export default function InputLabeled({
               style={styles.input}
               onBlur={onBlur}
               onChangeText={onChange}
-              value={value}
+              value={value || defaultValue}
               placeholder={placeholder}
               errors={errors}
+              keyboardType={keyboardType}
             />
           ) : (
             <TextInput
@@ -65,12 +67,13 @@ const styles = StyleSheet.create({
     borderColor: Colors.darkGray,
     borderWidth: 1,
     height: 40,
-    padding: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 16,
     borderRadius: 15,
   },
   inputArea: {
     backgroundColor: 'white',
-    borderColor: Colors.zircon,
+    borderColor: Colors.darkGray,
     textAlignVertical: 'top',
     borderWidth: 1,
     padding: 10,

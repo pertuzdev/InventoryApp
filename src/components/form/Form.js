@@ -1,11 +1,11 @@
-import * as React from 'react';
+import React from 'react';
 import {View, StyleSheet} from 'react-native';
+import DatePickerInput from './DatePickerInput';
 
 import InputLabeled from './InputLabeled';
 
 export default function Form({control, errors}) {
   //console.log('errors', errors);
-
   return (
     <View style={styles.container}>
       <InputLabeled
@@ -32,14 +32,10 @@ export default function Form({control, errors}) {
         control={control}
         placeholder="Escriba el precio de compra del producto..."
         errors={errors}
+        keyboardType={'numeric'}
       />
 
-      <InputLabeled
-        label="Fecha de ingreso"
-        name="date"
-        control={control}
-        errors={errors}
-      />
+      <DatePickerInput control={control} errors={errors} />
 
       <InputLabeled
         label="Descripción"

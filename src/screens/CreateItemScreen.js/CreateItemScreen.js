@@ -8,6 +8,7 @@ import Button from '../../components/Button/Button';
 import TextButton from '../../components/Button/TextButton';
 import Form from '../../components/form/Form';
 import {TextStyles} from '../../styles/TextStyles';
+import useDate from '../../hooks/useDate';
 
 export default function CreateItemScreen() {
   const {
@@ -25,6 +26,7 @@ export default function CreateItemScreen() {
   });
 
   const handleSave = data => {
+    data.date = Date.parse(data.date);
     console.log(data, 'dataToSave');
   };
   return (
