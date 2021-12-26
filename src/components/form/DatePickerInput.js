@@ -13,12 +13,8 @@ import ErrorMessage from './ErrorMessage';
 import {Colors} from '../../styles/Colors';
 import useDate from '../../hooks/useDate';
 
-export default function DatePickerPickerInput({control, errors}) {
-  const {timestamp, setTimestamp, dateText, setDateText} = useDate();
-
-  console.log(timestamp, dateText, 'Robert');
-
-  const [date, setDate] = useState(new Date());
+export default function DatePickerPickerInput({control, errors, dateCaptured}) {
+  const [date, setDate] = useState(dateCaptured);
   const [dateToShow, setDateToShow] = useState('');
   const [mode, setMode] = useState('date');
   const [show, setShow] = useState(false);
@@ -54,19 +50,23 @@ export default function DatePickerPickerInput({control, errors}) {
         </Pressable>
         <Controller
           control={control}
+          defaultValue={date}
           render={({field: {onChange, onBlur, value}}) => {
-            console.log(value, 'kimsita');
             return (
               show && (
                 <DateTimePicker
                   testID="dateTimePicker"
                   value={value || date}
-                  mode={'date'}
+                  mode={mode}
                   is24Hour={true}
                   display="default"
                   onChange={(event, selectedDate) => {
                     handleChange(event, selectedDate);
-                    onChange(selectedDate);
+                    if (!selectedDate) {
+                      onChange(date);
+                    } else {
+                      onChange(selectedDate);
+                    }
                   }}
                 />
               )

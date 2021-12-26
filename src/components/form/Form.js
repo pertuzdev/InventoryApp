@@ -4,7 +4,7 @@ import DatePickerInput from './DatePickerInput';
 
 import InputLabeled from './InputLabeled';
 
-export default function Form({control, errors}) {
+export default function Form({control, errors, dateCaptured}) {
   //console.log('errors', errors);
   return (
     <View style={styles.container}>
@@ -35,7 +35,11 @@ export default function Form({control, errors}) {
         keyboardType={'numeric'}
       />
 
-      <DatePickerInput control={control} errors={errors} />
+      <DatePickerInput
+        control={control}
+        errors={errors}
+        dateCaptured={dateCaptured}
+      />
 
       <InputLabeled
         label="Descripción"

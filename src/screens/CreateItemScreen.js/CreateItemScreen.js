@@ -4,6 +4,9 @@ import {ScrollView} from 'react-native-gesture-handler';
 
 import {useForm} from 'react-hook-form';
 
+import firestore from '@react-native-firebase/firestore';
+
+import {addItem} from '../../services/addItem';
 import Button from '../../components/Button/Button';
 import TextButton from '../../components/Button/TextButton';
 import Form from '../../components/form/Form';
@@ -11,6 +14,8 @@ import {TextStyles} from '../../styles/TextStyles';
 import useDate from '../../hooks/useDate';
 
 export default function CreateItemScreen() {
+  const dateCaptured = new Date();
+
   const {
     handleSubmit,
     control,
@@ -20,14 +25,17 @@ export default function CreateItemScreen() {
       code: '',
       name: '',
       cost: '',
-      date: '',
+      date: dateCaptured,
       description: '',
     },
   });
 
   const handleSave = data => {
-    data.date = Date.parse(data.date);
+    //data.date = Date.parse(data.date);
+    data.date = firestore.Timestamp.fromDate(data.date);
     console.log(data, 'dataToSave');
+
+    addItem(data);
   };
   return (
     <View style={styles.container}>
@@ -41,7 +49,7 @@ export default function CreateItemScreen() {
             />
           </View>
         </View>
-        <Form control={control} errors={errors} />
+        <Form control={control} errors={errors} dateCaptured={dateCaptured} />
       </ScrollView>
       <View style={styles.options}>
         <TextButton label="Cancelar" />
