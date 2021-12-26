@@ -31,7 +31,7 @@ export default function SearchBar({
 
         <TextInput
           value={query}
-          editable={onPress ? false : true}
+          editable={true}
           autoFocus={focus}
           placeholder="Busca por nombre o ID..."
           placeholderTextColor={Colors.gray}
