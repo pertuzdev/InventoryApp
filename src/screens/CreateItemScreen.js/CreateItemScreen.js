@@ -24,6 +24,7 @@ export default function CreateItemScreen() {
     defaultValues: {
       code: '',
       name: '',
+      quantity: 1,
       cost: '',
       date: dateCaptured,
       description: '',

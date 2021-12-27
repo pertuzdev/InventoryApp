@@ -3,11 +3,18 @@ import {View, StyleSheet} from 'react-native';
 import DatePickerInput from './DatePickerInput';
 
 import InputLabeled from './InputLabeled';
+import QuantityInput from './QuantityInput';
 
 export default function Form({control, errors, dateCaptured}) {
   //console.log('errors', errors);
   return (
     <View style={styles.container}>
+      <QuantityInput
+        label="Cantidad"
+        name="quantity"
+        control={control}
+        errors={errors}
+      />
       <InputLabeled
         label="Código"
         name="code"
