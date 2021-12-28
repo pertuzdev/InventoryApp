@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import firestore from '@react-native-firebase/firestore';
 
-import {FlatList, Text} from 'react-native';
+import {FlatList, StyleSheet, Text, View} from 'react-native';
 import CardItem from './CardItem';
 import useItems from '../hooks/useItems';
+import {TextStyles} from '../styles/TextStyles';
 
 export default function ItemList() {
   const {items, loading} = useItems();
@@ -11,7 +12,8 @@ export default function ItemList() {
   if (loading) {
     return <Text>Cargando...</Text>;
   }
-  return (
+
+  return items ? (
     <FlatList
       data={items}
       renderItem={({item}) => (
@@ -19,7 +21,8 @@ export default function ItemList() {
           key={item.id}
           code={item.code}
           name={item.name}
-          stock={item.stock}
+          imageURL={item.imageURL}
+          quantity={item.quantity}
           cost={item.cost}
           date={item.date}
           description={item.description}
@@ -27,5 +30,25 @@ export default function ItemList() {
       )}
       keyExtractor={item => item.id}
     />
+  ) : (
+    <View>
+      <Text style={[styles.placeholder, TextStyles.placeholder]}>
+        No hay productos agregados
+      </Text>
+    </View>
   );
 }
+
+const styles = StyleSheet.create({
+  placeholder: {
+    textAlign: 'center',
+  },
+  content: {
+    flex: 1,
+    justifyContent: 'flex-start',
+  },
+  button: {},
+  btnContainer: {
+    padding: 16,
+  },
+});

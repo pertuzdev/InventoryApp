@@ -6,8 +6,10 @@ import AppImage from './AppImage';
 import {Colors} from '../styles/Colors';
 import {TextStyles} from '../styles/TextStyles';
 
-export default function CardItem({style, name, stock}) {
+export default function CardItem({style, name, quantity, imageURL}) {
   const src = require('../assets/images/card_image.png');
+
+  //console.log(imageURL, typeof imageURL);
 
   return (
     <Pressable
@@ -15,12 +17,19 @@ export default function CardItem({style, name, stock}) {
       android_ripple={{color: Colors.mediumGray}}>
       <View style={[styles.wrapper]}>
         <View style={styles.imgCont}>
-          <Image style={styles.img} source={src} />
+          {imageURL ? (
+            <Image style={styles.img} source={{uri: imageURL}} />
+          ) : (
+            <Image
+              style={styles.splashImg}
+              source={require('../assets/icons/ic_camera.png')}
+            />
+          )}
         </View>
         <View style={styles.txtWrapper}>
           <Text style={TextStyles.cardTitle}>{name}</Text>
           <Text style={[styles.cardDescription, TextStyles.cardDescription]}>
-            {`${stock} Disponibles`}
+            {`${quantity} Disponibles`}
           </Text>
         </View>
         <View style={styles.arrow}>
@@ -33,7 +42,6 @@ export default function CardItem({style, name, stock}) {
 
 const styles = StyleSheet.create({
   container: {
-    marginBottom: 4,
     //paddingVertical: 10,
     paddingHorizontal: 16,
     height: 90,
@@ -44,12 +52,24 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
   },
-  imageCont: {
-    width: '25%',
-    height: '80%',
+  imgCont: {
+    width: 75,
+    height: 75,
+    backgroundColor: Colors.gray,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 10,
   },
   img: {
-    flex: 1,
+    //flex: 1,
+    width: '100%',
+    height: '100%',
+    borderRadius: 10,
+    resizeMode: 'contain',
+  },
+  splashImg: {
+    width: 25,
+    height: 25,
     resizeMode: 'contain',
   },
   txtWrapper: {

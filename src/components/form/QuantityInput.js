@@ -40,7 +40,6 @@ export default function QuantityInput({
           name={name}
           rules={rules}
           render={({field: {onChange, onBlur, value}}) => {
-            console.log(value, 'value');
             return (
               <>
                 <Pressable

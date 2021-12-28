@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, ToastAndroid, StyleSheet} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
 import firestore from '@react-native-firebase/firestore';
@@ -11,10 +11,21 @@ import Header from '../../components/Header';
 import {TextStyles} from '../../styles/TextStyles';
 import ItemList from '../../components/ItemList';
 
-export default function HomeScreen({navigation}) {
+export default function HomeScreen({route, navigation}) {
+  const showToast = (message = '') => {
+    ToastAndroid.show(message, ToastAndroid.LONG);
+  };
+
   const handlePress = () => {
     navigation.navigate('CreateItem');
   };
+
+  useEffect(() => {
+    if (route.params?.message) {
+      showToast(route.params.message);
+    }
+  }, [route.params?.message]);
+
   return (
     <SafeAreaView style={styles.container}>
       <Header style={styles.header} />
@@ -47,9 +58,6 @@ const styles = StyleSheet.create({
   header: {
     margin: 16,
     marginTop: 20,
-  },
-  placeholder: {
-    textAlign: 'center',
   },
   content: {
     flex: 1,
