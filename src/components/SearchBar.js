@@ -11,9 +11,9 @@ import {
 import {Colors} from '../styles/Colors';
 
 export default function SearchBar({
-  updateSearch = val => console.log(val, 'Value'),
+  handleSearch,
   style = {},
-  onPress = () => console.log('SearchBar pressed'),
+  onPress = null,
   focus = false,
 }) {
   const [query, setQuery] = useState();
@@ -31,23 +31,25 @@ export default function SearchBar({
 
         <TextInput
           value={query}
-          editable={true}
+          editable={onPress ? false : true}
           autoFocus={focus}
           placeholder="Busca por nombre o ID..."
           placeholderTextColor={Colors.gray}
           style={styles.textInput}
           onChangeText={text => {
-            var letters = /^$|^[a-zA-Z._\b ]+$/;
-            if (text.length > 12) setError('Query too long.');
-            else if (text.match(letters)) {
-              setQuery(text);
-              updateSearch(text);
-              if (error) setError(false);
-            } else setError('Please only enter alphabets');
+            //let letters = /^$|^[a-zA-Z._\b ]+$/;
+            setQuery(text);
+            handleSearch(text);
+            if (error) setError(false);
           }}
         />
         {query ? (
-          <TouchableOpacity onPress={() => setQuery('')} style={styles.vwClear}>
+          <TouchableOpacity
+            onPress={() => {
+              setQuery('');
+              handleSearch('');
+            }}
+            style={styles.vwClear}>
             <Image
               style={styles.icClear}
               source={require('../assets/icons/ic_clear.png')}
@@ -100,5 +102,6 @@ const styles = StyleSheet.create({
   },
   container: {
     // height: '100%', width: '100%'
+    //flex: 1,
   },
 });

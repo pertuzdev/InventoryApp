@@ -5,15 +5,24 @@ import {FlatList, StyleSheet, Text, View} from 'react-native';
 import CardItem from './CardItem';
 import useItems from '../hooks/useItems';
 import {TextStyles} from '../styles/TextStyles';
+import {SearchBar} from 'react-native-screens';
 
-export default function ItemList() {
-  const {items, loading} = useItems();
-
+export default function ItemList({items, loading}) {
   if (loading) {
     return <Text>Cargando...</Text>;
   }
 
-  return items ? (
+  if (!items) {
+    return (
+      <View>
+        <Text style={[styles.placeholder, TextStyles.placeholder]}>
+          No hay productos agregados
+        </Text>
+      </View>
+    );
+  }
+
+  return (
     <FlatList
       data={items}
       renderItem={({item}) => (
@@ -30,12 +39,6 @@ export default function ItemList() {
       )}
       keyExtractor={item => item.id}
     />
-  ) : (
-    <View>
-      <Text style={[styles.placeholder, TextStyles.placeholder]}>
-        No hay productos agregados
-      </Text>
-    </View>
   );
 }
 

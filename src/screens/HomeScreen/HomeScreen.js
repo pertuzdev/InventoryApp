@@ -10,14 +10,24 @@ import Header from '../../components/Header';
 
 import {TextStyles} from '../../styles/TextStyles';
 import ItemList from '../../components/ItemList';
+import useItems from '../../hooks/useItems';
 
 export default function HomeScreen({route, navigation}) {
+  const {items, loading} = useItems();
+
+  const [search, setSearch] = useState('');
+
   const showToast = (message = '') => {
     ToastAndroid.show(message, ToastAndroid.LONG);
   };
 
   const handlePress = () => {
     navigation.navigate('CreateItem');
+  };
+
+  const handleSearchBarPress = () => {
+    console.log('Searchbar pressed');
+    navigation.navigate('Search');
   };
 
   useEffect(() => {
@@ -28,14 +38,14 @@ export default function HomeScreen({route, navigation}) {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Header style={styles.header} />
+      <Header style={styles.header} onSearchBarPress={handleSearchBarPress} />
       {/*<View>
         <Text style={[styles.placeholder, TextStyles.placeholder]}>
           No hay productos agregados
         </Text>
       </View>*/}
       <View style={styles.content}>
-        <ItemList />
+        <ItemList handleSearch={search} items={items} loading={loading} />
       </View>
       <View style={styles.btnContainer}>
         <Button

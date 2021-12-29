@@ -9,7 +9,7 @@ import {TextStyles} from '../styles/TextStyles';
 import SearchBar from './SearchBar';
 import InfoCard from './InfoCard';
 
-export default function Header({style}) {
+export default function Header({style, onSearchBarPress}) {
   const src = require('../assets/icons/ic_profile.png');
   return (
     <View style={[styles.container, style]}>
@@ -22,7 +22,7 @@ export default function Header({style}) {
           <Text style={TextStyles.cardDescription}>Perfil / Propietario</Text>
         </View>
       </View>
-      <SearchBar style={styles.searchBar} />
+      <SearchBar style={styles.searchBar} onPress={onSearchBarPress} />
       <View style={styles.infoWrapper}>
         <InfoCard style={styles.infoCard} />
         <InfoCard style={styles.infoCard} />
