@@ -7,7 +7,7 @@ import useItems from '../hooks/useItems';
 import {TextStyles} from '../styles/TextStyles';
 import {SearchBar} from 'react-native-screens';
 
-export default function ItemList({items, loading}) {
+export default function ItemList({navigation, items, loading}) {
   if (loading) {
     return <Text>Cargando...</Text>;
   }
@@ -28,6 +28,7 @@ export default function ItemList({items, loading}) {
       renderItem={({item}) => (
         <CardItem
           key={item.id}
+          id={item.id}
           code={item.code}
           name={item.name}
           imageURL={item.imageURL}
@@ -35,6 +36,7 @@ export default function ItemList({items, loading}) {
           cost={item.cost}
           date={item.date}
           description={item.description}
+          navigation={navigation}
         />
       )}
       keyExtractor={item => item.id}

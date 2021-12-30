@@ -20,9 +20,9 @@ export default function DatePickerPickerInput({control, errors, dateCaptured}) {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
-    const dateFormatted = formatDate({date});
+    const {standardDate} = formatDate({date});
 
-    setDateToShow(dateFormatted);
+    setDateToShow(standardDate);
   }, [date]);
 
   const handleChange = (event, selectedDate) => {

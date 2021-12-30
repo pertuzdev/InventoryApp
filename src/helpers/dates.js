@@ -57,8 +57,10 @@ export const dateToTimestamp = date => {
 };
 
 export const formatDate = ({date}) => {
-  const [month, dayNumber, dayWord, year] = [
+  console.log(date, 'que pedo');
+  const [monthWord, monthNumber, dayNumber, dayWord, year] = [
     MONTHS_SPA[date.getMonth()],
+    date.getMonth(),
     date.getDate(),
     DAYS_SPA[date.getDay()],
     date.getFullYear(),
@@ -68,7 +70,9 @@ export const formatDate = ({date}) => {
 
   const [hour, minutes] = [date.getHours(), date.getMinutes()];
 
-  const dateFormatted = `${dayNumber} de ${month} del ${year}`;
+  const dateInWords = `${dayNumber} de ${monthWord} del ${year}`;
 
-  return dateFormatted;
+  const standardDate = `${dayNumber}/${monthNumber}/${year}`;
+
+  return {dateInWords, standardDate};
 };

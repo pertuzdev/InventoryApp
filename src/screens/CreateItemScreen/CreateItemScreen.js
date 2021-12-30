@@ -218,7 +218,7 @@ const styles = StyleSheet.create({
   scrollCont: {},
   head: {
     alignItems: 'center',
-    marginTop: 30,
+    marginTop: 20,
     marginBottom: 16,
   },
   imgCont: {

@@ -46,7 +46,12 @@ export default function HomeScreen({route, navigation}) {
         </Text>
       </View>*/}
       <View style={styles.content}>
-        <ItemList handleSearch={search} items={items} loading={loading} />
+        <ItemList
+          handleSearch={search}
+          items={items}
+          loading={loading}
+          navigation={navigation}
+        />
       </View>
       <View style={styles.btnContainer}>
         <Button

@@ -6,15 +6,38 @@ import AppImage from './AppImage';
 import {Colors} from '../styles/Colors';
 import {TextStyles} from '../styles/TextStyles';
 
-export default function CardItem({style, name, quantity, code, imageURL}) {
+export default function CardItem({
+  navigation,
+  style,
+  id = '',
+  code = '',
+  name = '',
+  imageURL = '',
+  quantity = 1,
+  cost = '',
+  date = {},
+  description = '',
+}) {
   const src = require('../assets/images/card_image.png');
 
-  //console.log(imageURL, typeof imageURL);
+  const handlePress = () => {
+    navigation.navigate('Detail', {
+      id,
+      code,
+      name,
+      imageURL,
+      quantity,
+      cost,
+      date,
+      description,
+    });
+  };
 
   return (
     <Pressable
       style={[styles.container, style]}
-      android_ripple={{color: Colors.mediumGray}}>
+      android_ripple={{color: Colors.mediumGray}}
+      onPress={handlePress}>
       <View style={[styles.wrapper]}>
         <View style={styles.imgCont}>
           {imageURL ? (

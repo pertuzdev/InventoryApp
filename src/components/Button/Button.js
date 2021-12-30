@@ -11,12 +11,13 @@ export default function Button({
   onPress,
   onPressOut,
   size = 'sm',
+  backgroundColor = '',
   label = 'label',
   style,
 }) {
   return (
     <Ripple
-      style={[styles(size).container, style]}
+      style={[styles(size, backgroundColor).container, style]}
       rippleContainerBorderRadius={15}
       rippleDuration={600}
       onPress={onPress}
@@ -26,11 +27,11 @@ export default function Button({
   );
 }
 
-const styles = size =>
+const styles = (size, backgroundColor) =>
   StyleSheet.create({
     container: {
       width: size === 'lg' ? '100%' : '40%',
-      backgroundColor: Colors.primaryBlue,
+      backgroundColor: backgroundColor || Colors.primaryBlue,
       paddingVertical: 16,
       borderRadius: 15,
     },
