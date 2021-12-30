@@ -6,7 +6,7 @@ const ErrorMessage = ({errors, name}) => {
   //console.log(errors, 'AAAHH');
 
   if (errors && errors[name]) {
-    //console.log(errors, 'KEANU');
+    console.log(errors, 'KEANU');
     // console.log(errors[name], 'KHE');
     return <Text style={styles.errorTxt}>{errors[name].message}</Text>;
   } else {

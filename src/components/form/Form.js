@@ -1,5 +1,6 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
+import checkItem from '../../services/checkItem';
 import DatePickerInput from './DatePickerInput';
 
 import InputLabeled from './InputLabeled';
@@ -18,7 +19,13 @@ export default function Form({control, errors, dateCaptured}) {
       <InputLabeled
         label="Código"
         name="code"
-        rules={{required: 'Este campo es requerido'}}
+        rules={{
+          required: 'Este campo es requerido',
+          validate: async value => {
+            const itemExist = await checkItem(value);
+            return !itemExist || 'Ya existe un producto con ese código';
+          },
+        }}
         control={control}
         placeholder="Escriba el código del producto..."
         errors={errors}
@@ -65,6 +72,5 @@ const styles = StyleSheet.create({
     paddingTop: 16,
     paddingHorizontal: 16,
     paddingBottom: 16,
-    backgroundColor: 'white',
   },
 });

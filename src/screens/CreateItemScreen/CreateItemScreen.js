@@ -1,8 +1,10 @@
-import React, {useState} from 'react';
-import {Image, Pressable, StyleSheet, Text, View} from 'react-native';
+import React, {useRef, useState} from 'react';
+import {Image, Pressable, Keyboard, StyleSheet, Text, View} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 
 import {useForm} from 'react-hook-form';
+
+import RBSheet from 'react-native-raw-bottom-sheet';
 
 import firestore from '@react-native-firebase/firestore';
 import {utils} from '@react-native-firebase/app';
@@ -20,6 +22,8 @@ import {Colors} from '../../styles/Colors';
 
 export default function CreateItemScreen({navigation}) {
   const dateCaptured = new Date();
+
+  const refRBSheet = useRef();
 
   const [image, setImage] = useState(null);
 
@@ -40,6 +44,14 @@ export default function CreateItemScreen({navigation}) {
     },
   });
 
+  const openSheetBottom = () => {
+    refRBSheet.current.open();
+  };
+
+  const closeSheetBottom = () => {
+    refRBSheet.current.close();
+  };
+
   const cleanPhotos = () => {
     ImagePicker.cleanPermanentFiles() //cleanPermanentFiles
       .then(() => {
@@ -57,9 +69,25 @@ export default function CreateItemScreen({navigation}) {
       cropping: true,
     })
       .then(img => {
-        console.log(img, 'image');
+        console.log(img, 'imageFromGallery');
         setImage(img.path);
-        //cleanPhotos();
+        closeSheetBottom();
+      })
+      .catch(e => {
+        console.log(e);
+      });
+  };
+
+  const takePhoto = () => {
+    ImagePicker.openCamera({
+      width: 400,
+      height: 400,
+      cropping: true,
+    })
+      .then(img => {
+        console.log(img, 'imageFromCamera');
+        setImage(img.path);
+        closeSheetBottom();
       })
       .catch(e => {
         console.log(e);
@@ -92,6 +120,7 @@ export default function CreateItemScreen({navigation}) {
 
     navigation.navigate('Home', {message: 'Producto creado!'});
   };
+
   return (
     <View style={styles.container}>
       <ScrollView style={styles.scrollCont}>
@@ -99,7 +128,7 @@ export default function CreateItemScreen({navigation}) {
           {/* <Text style={TextStyles.title}>Zapatos Rojos</Text> */}
           <Pressable
             style={styles.imgCont}
-            onPress={chosePhotoFromGallery}
+            onPress={openSheetBottom}
             android_ripple={{color: Colors.darkGray}}>
             {image ? (
               <Image source={{uri: image}} style={styles.img} />
@@ -111,7 +140,7 @@ export default function CreateItemScreen({navigation}) {
             )}
             <Pressable
               style={styles.editBtn}
-              onPress={chosePhotoFromGallery}
+              onPress={openSheetBottom}
               android_ripple={{color: Colors.darkGray}}>
               <Image source={require('../../assets/icons/ic_pencil.png')} />
             </Pressable>
@@ -121,8 +150,55 @@ export default function CreateItemScreen({navigation}) {
       </ScrollView>
       <View style={styles.options}>
         <TextButton label="Cancelar" />
-        <Button label="Guardar" onPress={handleSubmit(handleSave)} />
+        <Button
+          label="Guardar"
+          onPress={handleSubmit(handleSave)}
+          onPressOut={() => Keyboard.dismiss()}
+        />
       </View>
+      <RBSheet
+        ref={refRBSheet}
+        height={170}
+        closeOnDragDown={true}
+        closeOnPressMask={true}
+        customStyles={{
+          wrapper: {
+            backgroundColor: 'rgba(0,0,0,0.5)',
+          },
+          draggableIcon: {
+            backgroundColor: '#000',
+          },
+        }}>
+        <View style={styles.sheetContainer}>
+          <Text style={styles.sheetTitle}>Foto del producto</Text>
+          <View style={styles.sheetWrapper}>
+            <Pressable
+              style={styles.sheetBtn}
+              android_ripple={{color: Colors.mediumGray}}
+              onPress={takePhoto}>
+              <View style={styles.sheetBtnWrapp}>
+                <Image
+                  style={styles.sheetOptIcon}
+                  source={require('../../assets/icons/ic_camera.png')}
+                />
+              </View>
+              <Text style={styles.sheetIconTxt}>Cámara</Text>
+            </Pressable>
+            <Pressable
+              style={styles.sheetBtn}
+              android_ripple={{color: Colors.mediumGray}}
+              onPress={chosePhotoFromGallery}>
+              <View style={styles.sheetBtnWrapp}>
+                <Image
+                  style={styles.sheetOptIcon}
+                  source={require('../../assets/icons/ic_gallery.png')}
+                />
+              </View>
+              <Text style={styles.sheetIconTxt}>Galería</Text>
+            </Pressable>
+          </View>
+        </View>
+      </RBSheet>
     </View>
   );
 }
@@ -176,5 +252,38 @@ const styles = StyleSheet.create({
     padding: 8,
     borderWidth: 1,
     borderRadius: 100,
+  },
+  sheetContainer: {
+    marginLeft: 8,
+  },
+  sheetTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginVertical: 8,
+    marginLeft: 16,
+  },
+  sheetWrapper: {
+    flexDirection: 'row',
+    marginVertical: 0,
+    marginLeft: 8,
+    //backgroundColor: 'blue',
+  },
+  sheetBtn: {
+    marginRight: 24,
+    padding: 8,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  sheetBtnWrapp: {
+    padding: 12,
+    borderWidth: 1,
+    borderRadius: 100,
+  },
+  sheetOptIcon: {
+    width: 25,
+    height: 25,
+  },
+  sheetIconTxt: {
+    marginTop: 4,
   },
 });

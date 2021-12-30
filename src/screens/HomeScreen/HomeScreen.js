@@ -11,6 +11,7 @@ import Header from '../../components/Header';
 import {TextStyles} from '../../styles/TextStyles';
 import ItemList from '../../components/ItemList';
 import useItems from '../../hooks/useItems';
+import checkItem from '../../services/checkItem';
 
 export default function HomeScreen({route, navigation}) {
   const {items, loading} = useItems();
