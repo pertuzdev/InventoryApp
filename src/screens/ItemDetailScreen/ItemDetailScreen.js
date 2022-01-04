@@ -16,7 +16,7 @@ export default function ItemDetailScreen({route, navigation}) {
   console.log(route.params, 'id');
 
   const formatCost = () => {
-    return cost / cost === 1 ? `$ ${cost}.00` : `$ ${cost}`;
+    return cost / Math.floor(cost) === 1 ? `$ ${cost}.00` : `$ ${cost}`;
   };
 
   const normalizeDate = () => {
