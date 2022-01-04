@@ -1,5 +1,20 @@
-import React, {useRef, useState} from 'react';
-import {Image, Pressable, Keyboard, StyleSheet, Text, View} from 'react-native';
+import React, {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from 'react';
+import {
+  Image,
+  Pressable,
+  Keyboard,
+  StyleSheet,
+  Text,
+  View,
+  Alert,
+  BackHandler,
+} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 
 import {useForm} from 'react-hook-form';
@@ -7,19 +22,19 @@ import {useForm} from 'react-hook-form';
 import RBSheet from 'react-native-raw-bottom-sheet';
 
 import firestore from '@react-native-firebase/firestore';
-import {utils} from '@react-native-firebase/app';
+
 import storage from '@react-native-firebase/storage';
 
 import ImagePicker from 'react-native-image-crop-picker';
 
-import {addItem} from '../../services/addItem';
+import {addItem} from '../../services/firestore/addItem';
 import Button from '../../components/Button/Button';
 import TextButton from '../../components/Button/TextButton';
 import Form from '../../components/form/Form';
-import {TextStyles} from '../../styles/TextStyles';
-import useDate from '../../hooks/useDate';
+
 import {Colors} from '../../styles/Colors';
 import ActivityIndicator from '../../components/ActivityIndicator';
+import {uploadFile} from '../../services/cloudStorage/uploadFile';
 
 export default function CreateItemScreen({navigation}) {
   const dateCaptured = new Date();
@@ -28,8 +43,6 @@ export default function CreateItemScreen({navigation}) {
 
   const [image, setImage] = useState(null);
   const [loading, setLoading] = useState(false);
-
-  console.log(image, 'mono');
 
   const {
     handleSubmit,
@@ -71,7 +84,6 @@ export default function CreateItemScreen({navigation}) {
       cropping: true,
     })
       .then(img => {
-        console.log(img, 'imageFromGallery');
         setImage(img.path);
         closeSheetBottom();
       })
@@ -87,7 +99,6 @@ export default function CreateItemScreen({navigation}) {
       cropping: true,
     })
       .then(img => {
-        console.log(img, 'imageFromCamera');
         setImage(img.path);
         closeSheetBottom();
       })
@@ -96,21 +107,14 @@ export default function CreateItemScreen({navigation}) {
       });
   };
 
-  const uploadImage = async pathRef => {
-    const reference = storage().ref(pathRef);
-    // uploads file
-    await reference.putFile(image);
-  };
-
   const handleSave = async data => {
-    setLoading(true);
+    //setLoading(true);
     if (image) {
       const pathRef = `/images/InventoryApp_Image_${data.name}_${Math.floor(
         Math.random() * 1500,
       )}.jpg`;
-      await uploadImage(pathRef);
 
-      const url = await storage().ref(pathRef).getDownloadURL();
+      const url = await uploadFile(pathRef, image);
       data.imageURL = url;
     }
 
@@ -125,6 +129,58 @@ export default function CreateItemScreen({navigation}) {
 
     navigation.navigate('Home', {message: 'Producto creado!'});
   };
+
+  const hasUnsavedChanges = () => {
+    const {code, name, cost, description} = control._formValues;
+
+    const validation = code || name || cost || description ? true : false;
+
+    return validation ? true : false;
+  };
+
+  const backAction = () => {
+    if (hasUnsavedChanges()) {
+      Alert.alert(
+        'SALIR SIN GUARDAR',
+        'Tienes cambios sin guardar. ¿Seguro que deseas salir?',
+        [
+          {text: 'Cancelar', style: 'cancel', onPress: () => {}},
+          {
+            text: 'Salir',
+            style: 'destructive',
+            onPress: () => navigation.goBack(),
+          },
+        ],
+      );
+    } else {
+      navigation.goBack();
+    }
+    return true;
+  };
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerLeft: () => (
+        <Pressable
+          style={{
+            width: 50,
+            flexGrow: 1,
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+          onPress={() => backAction()}>
+          <Image source={require('../../assets/icons/ic_back.png')} />
+        </Pressable>
+      ),
+    });
+  }, [navigation]);
+
+  useEffect(() => {
+    BackHandler.addEventListener('hardwareBackPress', backAction);
+
+    return () =>
+      BackHandler.removeEventListener('hardwareBackPress', backAction);
+  }, []);
 
   return (
     <ActivityIndicator loading={loading}>
@@ -158,6 +214,7 @@ export default function CreateItemScreen({navigation}) {
           <TextButton label="Cancelar" />
           <Button
             label="Guardar"
+            onPressIn={() => setLoading(true)}
             onPress={handleSubmit(handleSave)}
             onPressOut={() => Keyboard.dismiss()}
           />
