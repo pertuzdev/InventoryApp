@@ -57,22 +57,23 @@ export const dateToTimestamp = date => {
 };
 
 export const formatDate = ({date}) => {
-  console.log(date, 'que pedo');
+  const dateParsed = new Date(date);
+  console.log(typeof date, 'que pedo');
   const [monthWord, monthNumber, dayNumber, dayWord, year] = [
-    MONTHS_SPA[date.getMonth()],
-    date.getMonth(),
-    date.getDate(),
-    DAYS_SPA[date.getDay()],
-    date.getFullYear(),
+    MONTHS_SPA[dateParsed.getMonth()],
+    dateParsed.getMonth(),
+    dateParsed.getDate(),
+    DAYS_SPA[dateParsed.getDay()],
+    dateParsed.getFullYear(),
   ];
 
   const day = `${dayWord.charAt(0).toUpperCase() + dayWord.slice(1)}`;
 
-  const [hour, minutes] = [date.getHours(), date.getMinutes()];
+  const [hour, minutes] = [dateParsed.getHours(), dateParsed.getMinutes()];
 
   const dateInWords = `${dayNumber} de ${monthWord} del ${year}`;
 
-  const standardDate = `${dayNumber}/${monthNumber}/${year}`;
+  const standardDate = `${dayNumber}/${monthNumber + 1}/${year}`;
 
   return {dateInWords, standardDate};
 };
