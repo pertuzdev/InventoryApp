@@ -1,15 +1,19 @@
 import React from 'react';
-import {Image, Pressable, StyleSheet, Text, View} from 'react-native';
+import {Image, Pressable, Alert, StyleSheet, Text, View} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 import Button from '../../components/Button/Button';
 import TextButton from '../../components/Button/TextButton';
 import {formatDate} from '../../helpers/dates';
+import {deleteFileFromURL} from '../../services/cloudStorage/deleteFileFromURL';
+import {deleteItem} from '../../services/firestore/deleteItem';
 import {Colors} from '../../styles/Colors';
 import {TextStyles} from '../../styles/TextStyles';
 
 export default function ItemDetailScreen({route, navigation}) {
   const {id, code, name, imageURL, quantity, cost, date, description} =
     route.params;
+
+  console.log(route.params, 'id');
 
   const formatCost = () => {
     return cost / cost === 1 ? `$ ${cost}.00` : `$ ${cost}`;
@@ -20,7 +24,41 @@ export default function ItemDetailScreen({route, navigation}) {
     return standardDate;
   };
 
-  const goToEdit = () => {};
+  const goToEdit = () => {
+    navigation.navigate('Edit', {
+      id,
+      code,
+      name,
+      imageURL,
+      quantity,
+      cost,
+      date: date.toDate().toString(),
+      description,
+    });
+  };
+
+  const removeItem = () => {
+    if (imageURL) deleteFileFromURL(imageURL);
+    deleteItem(id);
+    navigation.navigate('Home', {
+      message: 'Producto eliminado',
+    });
+  };
+
+  const fireAlert = () => {
+    Alert.alert(
+      'ELIMINAR PRODUCTO',
+      '¿Estás seguro que deseas eliminar este producto?',
+      [
+        {
+          text: 'Cancelar',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+        {text: 'Aceptar', onPress: () => removeItem()},
+      ],
+    );
+  };
 
   return (
     <View style={styles.container}>
@@ -70,7 +108,11 @@ export default function ItemDetailScreen({route, navigation}) {
         </View>
       </ScrollView>
       <View style={styles.options}>
-        <Button label="Eliminar" backgroundColor={Colors.red} />
+        <Button
+          label="Eliminar"
+          backgroundColor={Colors.red}
+          onPressIn={fireAlert}
+        />
         <Button label="Editar" onPress={goToEdit} />
       </View>
     </View>
