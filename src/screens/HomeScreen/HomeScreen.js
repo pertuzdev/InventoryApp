@@ -23,7 +23,7 @@ export default function HomeScreen({route, navigation}) {
   //console.log(totalQty, totalCost, 'Sheary Tan');
 
   const showToast = (message = '') => {
-    ToastAndroid.show(message, ToastAndroid.LONG);
+    ToastAndroid.show(message, ToastAndroid.SHORT);
   };
 
   const handlePress = () => {
