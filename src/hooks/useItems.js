@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 
 import firestore from '@react-native-firebase/firestore';
-import getItems from '../services/getItems';
+import getItems from '../services/firestore/getItems';
 
 export default function useItems() {
   const [items, setItems] = useState([]);

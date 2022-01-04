@@ -19,7 +19,7 @@ export default function QuantityInput({
   errors,
 }) {
   const [qty, setQty] = useState(1);
-  console.log(qty, 'qty');
+  //console.log(qty, 'qty');
 
   const handleAdd = (value, onChange) => {
     onChange(value + 1);

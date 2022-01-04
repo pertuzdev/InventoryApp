@@ -6,6 +6,7 @@ import HomeScreen from '../screens/HomeScreen/HomeScreen';
 import CreateItemScreen from '../screens/CreateItemScreen/CreateItemScreen';
 import SearchScreen from '../screens/SearchScreen/SearchScreen';
 import ItemDetailScreen from '../screens/ItemDetailScreen/ItemDetailScreen';
+import EditItemScreen from '../screens/EditItemScreen/EditItemScreen';
 
 const Stack = createStackNavigator();
 
@@ -34,6 +35,11 @@ const HomeStack = () => {
         name="Detail"
         component={ItemDetailScreen}
         options={{title: 'Descripción del Producto'}}
+      />
+      <Stack.Screen
+        name="Edit"
+        component={EditItemScreen}
+        options={{title: 'Editar Producto'}}
       />
     </Stack.Navigator>
   );

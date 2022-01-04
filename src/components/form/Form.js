@@ -1,13 +1,20 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
-import checkItem from '../../services/checkItem';
+import checkItem from '../../services/firestore/checkItem';
 import DatePickerInput from './DatePickerInput';
 
 import InputLabeled from './InputLabeled';
 import QuantityInput from './QuantityInput';
 
-export default function Form({control, errors, dateCaptured}) {
+export default function Form({control, errors, dateCaptured, itemID}) {
   //console.log('errors', errors);
+
+  const validateCode = async value => {
+    const itemExist = await checkItem(value, itemID);
+    console.log(value, itemID, itemExist, 'Maria');
+    return !itemExist || 'Ya existe un producto con ese código';
+  };
+
   return (
     <View style={styles.container}>
       <QuantityInput
@@ -21,10 +28,7 @@ export default function Form({control, errors, dateCaptured}) {
         name="code"
         rules={{
           required: 'Este campo es requerido',
-          validate: async value => {
-            const itemExist = await checkItem(value);
-            return !itemExist || 'Ya existe un producto con ese código';
-          },
+          validate: value => validateCode(value),
         }}
         control={control}
         placeholder="Escriba el código del producto..."

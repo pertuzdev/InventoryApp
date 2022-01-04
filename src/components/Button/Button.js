@@ -8,6 +8,7 @@ import {TextStyles} from '../../styles/TextStyles';
 
 export default function Button({
   navigation,
+  onPressIn,
   onPress,
   onPressOut,
   size = 'sm',
@@ -20,6 +21,7 @@ export default function Button({
       style={[styles(size, backgroundColor).container, style]}
       rippleContainerBorderRadius={15}
       rippleDuration={600}
+      onPressIn={onPressIn}
       onPress={onPress}
       onPressOut={onPressOut}>
       <Text style={[styles().btnText, TextStyles.buttonTxt]}>{label}</Text>

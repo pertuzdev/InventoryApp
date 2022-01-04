@@ -29,7 +29,11 @@ export default function SearchScreen({route, navigation}) {
     <SafeAreaView style={styles.container}>
       <SearchHeader navigation={navigation} handleSearch={handleSearch} />
       {!notFound ? (
-        <ItemList items={itemsFiltered || items} loading={loading} />
+        <ItemList
+          items={itemsFiltered || items}
+          loading={loading}
+          navigation={navigation}
+        />
       ) : (
         <View style={styles.notFoundWrapper}>
           <Text style={styles.notFoundtext}>
