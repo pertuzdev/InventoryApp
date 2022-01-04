@@ -118,7 +118,10 @@ export default function CreateItemScreen({navigation}) {
       data.imageURL = url;
     }
 
+    if (data.hasOwnProperty('cost')) data.cost = Number(data.cost);
+
     data.date = firestore.Timestamp.fromDate(data.date);
+
     console.log(data, 'dataToSave');
 
     await addItem(data);
