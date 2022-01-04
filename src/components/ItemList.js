@@ -8,39 +8,40 @@ import {TextStyles} from '../styles/TextStyles';
 import {SearchBar} from 'react-native-screens';
 
 export default function ItemList({navigation, items, loading}) {
+  //console.log(items[0].id, 'rosé');
   if (loading) {
     return <Text>Cargando...</Text>;
   }
 
-  if (!items) {
-    return (
-      <View>
-        <Text style={[styles.placeholder, TextStyles.placeholder]}>
-          No hay productos agregados
-        </Text>
-      </View>
-    );
-  }
-
   return (
-    <FlatList
-      data={items}
-      renderItem={({item}) => (
-        <CardItem
-          key={item.id}
-          id={item.id}
-          code={item.code}
-          name={item.name}
-          imageURL={item.imageURL}
-          quantity={item.quantity}
-          cost={item.cost}
-          date={item.date}
-          description={item.description}
-          navigation={navigation}
+    <>
+      {items.length === 0 ? (
+        <View style={styles.noItems}>
+          <Text style={[styles.placeholder, TextStyles.placeholder]}>
+            No hay productos agregados
+          </Text>
+        </View>
+      ) : (
+        <FlatList
+          data={items}
+          renderItem={({item}) => (
+            <CardItem
+              key={item.id}
+              id={item.id}
+              code={item.code}
+              name={item.name}
+              imageURL={item.imageURL}
+              quantity={item.quantity}
+              cost={item.cost}
+              date={item.date}
+              description={item.description}
+              navigation={navigation}
+            />
+          )}
+          keyExtractor={item => item.id}
         />
       )}
-      keyExtractor={item => item.id}
-    />
+    </>
   );
 }
 
@@ -51,6 +52,11 @@ const styles = StyleSheet.create({
   content: {
     flex: 1,
     justifyContent: 'flex-start',
+  },
+  noItems: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   button: {},
   btnContainer: {
