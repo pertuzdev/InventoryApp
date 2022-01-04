@@ -181,7 +181,9 @@ export default function CreateItemScreen({navigation}) {
           <TextButton label="Cancelar" onPress={handleCancelPress} />
           <Button
             label="Guardar"
-            onPressIn={() => setLoading(true)}
+            onPressIn={() => {
+              if (Object.keys(errors).length === 0) setLoading(true);
+            }}
             onPress={handleSubmit(handleSave)}
             onPressOut={() => Keyboard.dismiss()}
           />

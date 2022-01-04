@@ -215,7 +215,7 @@ export default function EditItemScreen({route, navigation}) {
           <Button
             label="Guardar"
             onPressIn={() => {
-              if (!Object.keys(errors.length === 0)) setLoading(true);
+              if (Object.keys(errors).length === 0) setLoading(true);
             }}
             onPress={handleSubmit(handleSave)}
             onPressOut={() => Keyboard.dismiss()}
