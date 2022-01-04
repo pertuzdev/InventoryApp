@@ -46,7 +46,9 @@ export default function HomeScreen({route, navigation}) {
       const sumReducer = (prev, curr) => prev + curr;
 
       setTotalQty(quantArr.reduce(sumReducer));
-      setTotalCost(cost.reduce(sumReducer));
+      setTotalCost(
+        Math.round((cost.reduce(sumReducer) + Number.EPSILON) * 100) / 100,
+      );
     }
   }, [route.params?.message, items]);
 
