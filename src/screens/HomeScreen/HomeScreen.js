@@ -11,12 +11,16 @@ import Header from '../../components/Header';
 import {TextStyles} from '../../styles/TextStyles';
 import ItemList from '../../components/ItemList';
 import useItems from '../../hooks/useItems';
-import checkItem from '../../services/checkItem';
+import checkItem from '../../services/firestore/checkItem';
 
 export default function HomeScreen({route, navigation}) {
   const {items, loading} = useItems();
 
+  const [totalQty, setTotalQty] = useState(0);
+  const [totalCost, setTotalCost] = useState(0);
   const [search, setSearch] = useState('');
+
+  //console.log(totalQty, totalCost, 'Sheary Tan');
 
   const showToast = (message = '') => {
     ToastAndroid.show(message, ToastAndroid.LONG);
@@ -35,16 +39,26 @@ export default function HomeScreen({route, navigation}) {
     if (route.params?.message) {
       showToast(route.params.message);
     }
-  }, [route.params?.message]);
+    if (items.length > 0) {
+      const quantArr = items.map(item => item.quantity);
+      const cost = items.map(item => item.cost);
+
+      const sumReducer = (prev, curr) => prev + curr;
+
+      setTotalQty(quantArr.reduce(sumReducer));
+      setTotalCost(cost.reduce(sumReducer));
+    }
+  }, [route.params?.message, items]);
 
   return (
     <SafeAreaView style={styles.container}>
-      <Header style={styles.header} onSearchBarPress={handleSearchBarPress} />
-      {/*<View>
-        <Text style={[styles.placeholder, TextStyles.placeholder]}>
-          No hay productos agregados
-        </Text>
-      </View>*/}
+      <Header
+        style={styles.header}
+        onSearchBarPress={handleSearchBarPress}
+        totalQty={totalQty}
+        totalCost={totalCost}
+      />
+
       <View style={styles.content}>
         <ItemList
           handleSearch={search}
@@ -53,6 +67,7 @@ export default function HomeScreen({route, navigation}) {
           navigation={navigation}
         />
       </View>
+
       <View style={styles.btnContainer}>
         <Button
           size="lg"
@@ -79,6 +94,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-start',
   },
+
   button: {},
   btnContainer: {
     padding: 16,

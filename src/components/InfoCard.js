@@ -5,14 +5,14 @@ import {Colors} from '../styles/Colors';
 import {TextStyles} from '../styles/TextStyles';
 
 export default function InfoCard({
-  quantity = 0,
+  value = 0,
   label = 'label',
   style = {width: '100%'},
 }) {
   return (
     <View style={[styles.container, style]}>
-      <Text style={TextStyles.standardRegularTxt}>{quantity}</Text>
-      <Text style={TextStyles.standardRegularTxt}>{label}</Text>
+      <Text style={TextStyles.standardRegularTxt}>{value}</Text>
+      <Text style={styles.text}>{label}</Text>
     </View>
   );
 }
@@ -32,5 +32,10 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 5,
+  },
+  text: {
+    fontFamily: 'Roboto-Regular',
+    fontSize: 12,
+    color: Colors.blackGray,
   },
 });

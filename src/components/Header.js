@@ -9,7 +9,7 @@ import {TextStyles} from '../styles/TextStyles';
 import SearchBar from './SearchBar';
 import InfoCard from './InfoCard';
 
-export default function Header({style, onSearchBarPress}) {
+export default function Header({style, onSearchBarPress, totalQty, totalCost}) {
   const src = require('../assets/icons/ic_profile.png');
   return (
     <View style={[styles.container, style]}>
@@ -24,8 +24,16 @@ export default function Header({style, onSearchBarPress}) {
       </View>
       <SearchBar style={styles.searchBar} onPress={onSearchBarPress} />
       <View style={styles.infoWrapper}>
-        <InfoCard style={styles.infoCard} />
-        <InfoCard style={styles.infoCard} />
+        <InfoCard
+          style={styles.infoCard}
+          label={'Cantidad Total'}
+          value={totalQty}
+        />
+        <InfoCard
+          style={styles.infoCard}
+          label={'Costo Total'}
+          value={totalCost}
+        />
       </View>
     </View>
   );
