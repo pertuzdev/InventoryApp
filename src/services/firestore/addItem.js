@@ -6,5 +6,8 @@ export const addItem = item => {
     .add(item)
     .then(() => {
       console.log('Item added!');
+    })
+    .catch(e => {
+      console.log(e);
     });
 };
