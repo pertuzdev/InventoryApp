@@ -23,6 +23,8 @@ import ActivityIndicator from '../../components/ActivityIndicator';
 import {updateItem} from '../../services/firestore/updateItem';
 import {uploadFileFromURL} from '../../services/cloudStorage/uploadFileFromURL';
 import {uploadFile} from '../../services/cloudStorage/uploadFile';
+import {useAlertOnGoBack} from '../../hooks/useAlertOnGoBack';
+import {alertOnGoBack} from '../../helpers/alertOnGoBack';
 
 export default function EditItemScreen({route, navigation}) {
   const {id, code, name, imageURL, quantity, cost, date, description} =
@@ -161,6 +163,27 @@ export default function EditItemScreen({route, navigation}) {
     navigation.navigate('Detail', {id, ...data});
   };
 
+  const hasUnsavedChanges = () => {
+    const {_formValues} = control;
+
+    const validation =
+      _formValues.code !== code ||
+      _formValues.name !== name ||
+      _formValues.cost !== cost ||
+      _formValues.description !== description ||
+      _formValues.date.toString() !== new Date(date).toString()
+        ? true
+        : false;
+
+    return validation ? true : false;
+  };
+
+  useAlertOnGoBack(navigation, hasUnsavedChanges);
+
+  const handleCancelPress = () => {
+    alertOnGoBack(navigation, hasUnsavedChanges);
+  };
+
   return (
     <ActivityIndicator loading={loading}>
       <View style={styles.container}>
@@ -188,7 +211,7 @@ export default function EditItemScreen({route, navigation}) {
           />
         </ScrollView>
         <View style={styles.options}>
-          <TextButton label="Cancelar" />
+          <TextButton label="Cancelar" onPress={handleCancelPress} />
           <Button
             label="Guardar"
             onPressIn={() => {

@@ -35,6 +35,8 @@ import Form from '../../components/form/Form';
 import {Colors} from '../../styles/Colors';
 import ActivityIndicator from '../../components/ActivityIndicator';
 import {uploadFile} from '../../services/cloudStorage/uploadFile';
+import {useAlertOnGoBack} from '../../hooks/useAlertOnGoBack';
+import {alertOnGoBack} from '../../helpers/alertOnGoBack';
 
 export default function CreateItemScreen({navigation}) {
   const dateCaptured = new Date();
@@ -141,49 +143,11 @@ export default function CreateItemScreen({navigation}) {
     return validation ? true : false;
   };
 
-  const backAction = () => {
-    if (hasUnsavedChanges()) {
-      Alert.alert(
-        'SALIR SIN GUARDAR',
-        'Tienes cambios sin guardar. ¿Seguro que deseas salir?',
-        [
-          {text: 'Cancelar', style: 'cancel', onPress: () => {}},
-          {
-            text: 'Salir',
-            style: 'destructive',
-            onPress: () => navigation.goBack(),
-          },
-        ],
-      );
-    } else {
-      navigation.goBack();
-    }
-    return true;
+  useAlertOnGoBack(navigation, hasUnsavedChanges);
+
+  const handleCancelPress = () => {
+    alertOnGoBack(navigation, hasUnsavedChanges);
   };
-
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerLeft: () => (
-        <Pressable
-          style={{
-            width: 50,
-            flexGrow: 1,
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-          onPress={() => backAction()}>
-          <Image source={require('../../assets/icons/ic_back.png')} />
-        </Pressable>
-      ),
-    });
-  }, [navigation]);
-
-  useEffect(() => {
-    BackHandler.addEventListener('hardwareBackPress', backAction);
-
-    return () =>
-      BackHandler.removeEventListener('hardwareBackPress', backAction);
-  }, []);
 
   return (
     <ActivityIndicator loading={loading}>
@@ -214,7 +178,7 @@ export default function CreateItemScreen({navigation}) {
           <Form control={control} errors={errors} dateCaptured={dateCaptured} />
         </ScrollView>
         <View style={styles.options}>
-          <TextButton label="Cancelar" />
+          <TextButton label="Cancelar" onPress={handleCancelPress} />
           <Button
             label="Guardar"
             onPressIn={() => setLoading(true)}
