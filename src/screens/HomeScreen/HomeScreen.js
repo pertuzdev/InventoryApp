@@ -49,6 +49,9 @@ export default function HomeScreen({route, navigation}) {
       setTotalCost(
         Math.round((cost.reduce(sumReducer) + Number.EPSILON) * 100) / 100,
       );
+    } else {
+      setTotalQty(0);
+      setTotalCost(0);
     }
   }, [route.params?.message, items]);
 
