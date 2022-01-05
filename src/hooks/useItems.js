@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 
-import firestore from '@react-native-firebase/firestore';
 import getItems from '../services/firestore/getItems';
 
 export default function useItems() {

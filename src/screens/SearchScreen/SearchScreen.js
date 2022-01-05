@@ -2,10 +2,12 @@ import React, {useState} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
-import ItemList from '../../components/ItemList';
 import useItems from '../../hooks/useItems';
-import SearchHeader from '../../components/SearchHeader';
+
 import {Colors} from '../../styles/Colors';
+
+import ItemList from '../../components/ItemList';
+import SearchHeader from '../../components/SearchHeader';
 
 export default function SearchScreen({route, navigation}) {
   const {items, loading} = useItems();

@@ -15,6 +15,8 @@ export default function BottomSheet({
       animationType={'fade'}
       closeOnDragDown={true}
       closeOnPressMask={true}
+      openDuration={0}
+      closeDuration={0}
       customStyles={{
         wrapper: {
           backgroundColor: 'rgba(0,0,0,0.5)',

@@ -3,6 +3,7 @@ import {Image, Pressable, StyleSheet, View} from 'react-native';
 import {Colors} from '../styles/Colors';
 
 export default function SelectImage({openSheetBottom, image}) {
+  console.log(image, 'skipper');
   return (
     <View style={styles.head}>
       <Pressable

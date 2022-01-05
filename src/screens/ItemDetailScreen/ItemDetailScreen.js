@@ -9,13 +9,16 @@ import {
   ToastAndroid,
 } from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
-import Button from '../../components/Button/Button';
-import TextButton from '../../components/Button/TextButton';
-import {formatDate} from '../../helpers/dates';
-import {deleteFileFromURL} from '../../services/cloudStorage/deleteFileFromURL';
+
 import {deleteItem} from '../../services/firestore/deleteItem';
+import {deleteFileFromURL} from '../../services/cloudStorage/deleteFileFromURL';
+
+import {formatDate} from '../../helpers/dates';
+
 import {Colors} from '../../styles/Colors';
 import {TextStyles} from '../../styles/TextStyles';
+
+import Button from '../../components/Button/Button';
 
 export default function ItemDetailScreen({route, navigation}) {
   const {id, code, name, imageURL, quantity, cost, date, description} =

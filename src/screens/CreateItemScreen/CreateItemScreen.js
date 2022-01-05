@@ -7,14 +7,16 @@ import {useForm} from 'react-hook-form';
 import firestore from '@react-native-firebase/firestore';
 
 import {addItem} from '../../services/firestore/addItem';
-import Form from '../../components/form/Form';
-
-import ActivityIndicator from '../../components/ActivityIndicator';
 import {uploadFile} from '../../services/cloudStorage/uploadFile';
+
 import {useAlertOnGoBack} from '../../hooks/useAlertOnGoBack';
-import {alertOnGoBack} from '../../helpers/alertOnGoBack';
-import BottomOptions from '../../components/BottomOptions';
 import useImagePick from '../../hooks/useImagePick';
+
+import {alertOnGoBack} from '../../helpers/alertOnGoBack';
+
+import Form from '../../components/form/Form';
+import ActivityIndicator from '../../components/ActivityIndicator';
+import BottomOptions from '../../components/BottomOptions';
 import BottomSheet from '../../components/BottomSheet';
 import SelectImage from '../../components/SelectImage';
 
@@ -93,9 +95,7 @@ export default function CreateItemScreen({navigation}) {
     <ActivityIndicator loading={loading}>
       <View style={styles.container}>
         <ScrollView style={styles.scrollCont}>
-          <View style={styles.head}>
-            <SelectImage openSheetBottom={openSheetBottom} image={image} />
-          </View>
+          <SelectImage openSheetBottom={openSheetBottom} image={image} />
           <Form control={control} errors={errors} dateCaptured={dateCaptured} />
         </ScrollView>
         <BottomOptions
