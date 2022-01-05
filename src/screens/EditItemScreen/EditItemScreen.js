@@ -89,6 +89,7 @@ export default function EditItemScreen({route, navigation}) {
     const {_formValues} = control;
 
     const validation =
+      image ||
       _formValues.code !== code ||
       _formValues.name !== name ||
       _formValues.cost !== cost ||

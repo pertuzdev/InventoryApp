@@ -42,10 +42,6 @@ export default function CreateItemScreen({navigation}) {
     },
   });
 
-  console.log(control._formValues, 'values');
-
-  console.log(errors, 'errores');
-
   const openSheetBottom = () => {
     refRBSheet.current.open();
   };
@@ -85,7 +81,6 @@ export default function CreateItemScreen({navigation}) {
 
   const hasUnsavedChanges = () => {
     const {code, name, cost, description} = control._formValues;
-    console.log(control._formValues, image, 'le vale verga');
     const validation =
       image || code || name || cost || description ? true : false;
     return validation ? true : false;
