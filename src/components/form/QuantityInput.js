@@ -17,17 +17,29 @@ export default function QuantityInput({
   rules = {},
   control,
   errors,
+  placeholder = '',
+  keyboardType = 'numeric',
 }) {
   const [qty, setQty] = useState(1);
   //console.log(qty, 'qty');
 
   const handleAdd = (value, onChange) => {
-    onChange(value + 1);
+    onChange((Number(value) + 1).toString());
   };
 
   const handleSubtract = (value, onChange) => {
     if (value > 0) {
-      onChange(value - 1);
+      onChange((Number(value) - 1).toString());
+    }
+  };
+
+  const allowOnlyNumber = (value, onChange) => {
+    const validated = /^\d+$/.test(value);
+    console.log(validated, 'yuna');
+    if (value === '') {
+      onChange('');
+    } else if (validated) {
+      onChange(value);
     }
   };
 
@@ -40,6 +52,7 @@ export default function QuantityInput({
           name={name}
           rules={rules}
           render={({field: {onChange, onBlur, value}}) => {
+            console.log(value, 'Itaewon');
             return (
               <>
                 <Pressable
@@ -50,7 +63,15 @@ export default function QuantityInput({
                   onPress={() => handleSubtract(value, onChange)}>
                   <Image source={require('../../assets/icons/ic_minus.png')} />
                 </Pressable>
-                <Text style={styles.input}>{value}</Text>
+                {/* <Text style={styles.input}>{value}</Text> */}
+                <TextInput
+                  style={styles.input}
+                  onBlur={onBlur}
+                  onChangeText={text => allowOnlyNumber(text, onChange)}
+                  value={value}
+                  errors={errors}
+                  keyboardType={keyboardType}
+                />
                 <Pressable
                   style={styles.btn}
                   android_ripple={{

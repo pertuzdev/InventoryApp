@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
 import checkItem from '../../services/firestore/checkItem';
+import CostInput from './CostInput';
 import DatePickerInput from './DatePickerInput';
 
 import InputLabeled from './InputLabeled';
@@ -20,6 +21,7 @@ export default function Form({control, errors, dateCaptured, itemID}) {
       <QuantityInput
         label="Cantidad"
         name="quantity"
+        placeholder="1"
         control={control}
         errors={errors}
       />
@@ -44,7 +46,7 @@ export default function Form({control, errors, dateCaptured, itemID}) {
         errors={errors}
       />
 
-      <InputLabeled
+      <CostInput
         label="Costo (opcional)"
         name="cost"
         control={control}

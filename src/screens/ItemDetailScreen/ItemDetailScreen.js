@@ -149,10 +149,11 @@ const styles = StyleSheet.create({
   head: {
     alignItems: 'center',
     marginTop: 20,
-    marginBottom: 16,
   },
   title: {
-    marginBottom: 8,
+    marginBottom: 12,
+    marginHorizontal: 16,
+    textAlign: 'center',
   },
   imgCont: {
     width: 200,

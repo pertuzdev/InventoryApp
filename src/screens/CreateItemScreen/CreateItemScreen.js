@@ -35,7 +35,7 @@ export default function CreateItemScreen({navigation}) {
     defaultValues: {
       code: '',
       name: '',
-      quantity: 1,
+      quantity: '1',
       cost: '',
       date: dateCaptured,
       description: '',
@@ -66,7 +66,8 @@ export default function CreateItemScreen({navigation}) {
       data.imageURL = url;
     }
 
-    if (data.hasOwnProperty('cost')) data.cost = Number(data.cost);
+    data.cost = Number(data.cost);
+    data.quantity = Number(data.quantity);
 
     data.date = firestore.Timestamp.fromDate(data.date);
 

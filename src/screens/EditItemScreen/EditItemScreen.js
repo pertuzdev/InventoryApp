@@ -24,6 +24,8 @@ export default function EditItemScreen({route, navigation}) {
   const {id, code, name, imageURL, quantity, cost, date, description} =
     route.params;
 
+  console.log(cost, 'donkey');
+
   const refRBSheet = useRef();
   const [loading, setLoading] = useState(false);
 
@@ -35,8 +37,8 @@ export default function EditItemScreen({route, navigation}) {
     defaultValues: {
       code: code,
       name: name,
-      quantity: quantity,
-      cost: cost,
+      quantity: quantity.toString(),
+      cost: cost.toString(),
       date: new Date(date),
       description: description,
     },
@@ -68,7 +70,7 @@ export default function EditItemScreen({route, navigation}) {
       data.imageURL = imageURL;
     }
 
-    if (data.hasOwnProperty('cost')) data.cost = Number(data.cost);
+    data.cost = Number(data.cost);
 
     data.date = firestore.Timestamp.fromDate(data.date);
 
@@ -92,7 +94,8 @@ export default function EditItemScreen({route, navigation}) {
       image ||
       _formValues.code !== code ||
       _formValues.name !== name ||
-      _formValues.cost !== cost ||
+      Number(_formValues.cost) !== cost ||
+      Number(_formValues.quantity) !== quantity ||
       _formValues.description !== description ||
       _formValues.date.toString() !== new Date(date).toString()
         ? true
