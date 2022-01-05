@@ -25,6 +25,7 @@ import {uploadFileFromURL} from '../../services/cloudStorage/uploadFileFromURL';
 import {uploadFile} from '../../services/cloudStorage/uploadFile';
 import {useAlertOnGoBack} from '../../hooks/useAlertOnGoBack';
 import {alertOnGoBack} from '../../helpers/alertOnGoBack';
+import BottomOptions from '../../components/BottomOptions';
 
 export default function EditItemScreen({route, navigation}) {
   const {id, code, name, imageURL, quantity, cost, date, description} =
@@ -154,13 +155,15 @@ export default function EditItemScreen({route, navigation}) {
 
     console.log(data, 'dataToUpdate');
 
-    await updateItem(id, data);
-
-    await cleanPhotos();
-
-    setLoading(false);
-
-    navigation.navigate('Detail', {id, ...data});
+    updateItem(id, data).then(() => {
+      cleanPhotos();
+      setLoading(false);
+      navigation.navigate('Detail', {
+        id,
+        message: 'Producto actualizado',
+        ...data,
+      });
+    });
   };
 
   const hasUnsavedChanges = () => {
@@ -210,17 +213,11 @@ export default function EditItemScreen({route, navigation}) {
             itemID={id}
           />
         </ScrollView>
-        <View style={styles.options}>
-          <TextButton label="Cancelar" onPress={handleCancelPress} />
-          <Button
-            label="Guardar"
-            onPressIn={() => {
-              if (Object.keys(errors).length === 0) setLoading(true);
-            }}
-            onPress={handleSubmit(handleSave)}
-            onPressOut={() => Keyboard.dismiss()}
-          />
-        </View>
+        <BottomOptions
+          handleCancelPress={handleCancelPress}
+          handleSavePress={handleSubmit(handleSave)}
+          handleSavePressOut={() => Keyboard.dismiss()}
+        />
         <RBSheet
           ref={refRBSheet}
           height={170}

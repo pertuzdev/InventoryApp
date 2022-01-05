@@ -37,6 +37,7 @@ import ActivityIndicator from '../../components/ActivityIndicator';
 import {uploadFile} from '../../services/cloudStorage/uploadFile';
 import {useAlertOnGoBack} from '../../hooks/useAlertOnGoBack';
 import {alertOnGoBack} from '../../helpers/alertOnGoBack';
+import BottomOptions from '../../components/BottomOptions';
 
 export default function CreateItemScreen({navigation}) {
   const dateCaptured = new Date();
@@ -60,6 +61,8 @@ export default function CreateItemScreen({navigation}) {
       description: '',
     },
   });
+
+  console.log(errors, 'errores');
 
   const openSheetBottom = () => {
     refRBSheet.current.open();
@@ -110,7 +113,7 @@ export default function CreateItemScreen({navigation}) {
   };
 
   const handleSave = async data => {
-    //setLoading(true);
+    setLoading(true);
     if (image) {
       const pathRef = `/images/InventoryApp_Image_${data.name}_${Math.floor(
         Math.random() * 1500,
@@ -126,13 +129,11 @@ export default function CreateItemScreen({navigation}) {
 
     console.log(data, 'dataToSave');
 
-    await addItem(data);
-
-    await cleanPhotos();
-
-    setLoading(false);
-
-    navigation.navigate('Home', {message: 'Producto creado!'});
+    addItem(data).then(() => {
+      cleanPhotos();
+      setLoading(false);
+      navigation.navigate('Home', {message: 'Producto creado'});
+    });
   };
 
   const hasUnsavedChanges = () => {
@@ -177,17 +178,11 @@ export default function CreateItemScreen({navigation}) {
           </View>
           <Form control={control} errors={errors} dateCaptured={dateCaptured} />
         </ScrollView>
-        <View style={styles.options}>
-          <TextButton label="Cancelar" onPress={handleCancelPress} />
-          <Button
-            label="Guardar"
-            onPressIn={() => {
-              if (Object.keys(errors).length === 0) setLoading(true);
-            }}
-            onPress={handleSubmit(handleSave)}
-            onPressOut={() => Keyboard.dismiss()}
-          />
-        </View>
+        <BottomOptions
+          handleCancelPress={handleCancelPress}
+          handleSavePress={handleSubmit(handleSave)}
+          handleSavePressOut={() => Keyboard.dismiss()}
+        />
         <RBSheet
           ref={refRBSheet}
           height={170}

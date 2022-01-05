@@ -1,5 +1,13 @@
-import React from 'react';
-import {Image, Pressable, Alert, StyleSheet, Text, View} from 'react-native';
+import React, {useEffect} from 'react';
+import {
+  Image,
+  Pressable,
+  Alert,
+  StyleSheet,
+  Text,
+  View,
+  ToastAndroid,
+} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 import Button from '../../components/Button/Button';
 import TextButton from '../../components/Button/TextButton';
@@ -59,6 +67,17 @@ export default function ItemDetailScreen({route, navigation}) {
       ],
     );
   };
+
+  const showToast = (message = '') => {
+    ToastAndroid.show(message, ToastAndroid.SHORT);
+  };
+
+  useEffect(() => {
+    if (route.params?.message) {
+      showToast(route.params.message);
+      navigation.setParams({message: ''});
+    }
+  }, [route.params?.message, navigation]);
 
   return (
     <View style={styles.container}>
