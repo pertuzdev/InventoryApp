@@ -42,6 +42,8 @@ export default function CreateItemScreen({navigation}) {
     },
   });
 
+  console.log(control._formValues, 'values');
+
   console.log(errors, 'errores');
 
   const openSheetBottom = () => {
@@ -54,6 +56,8 @@ export default function CreateItemScreen({navigation}) {
 
   const {image, takePhoto, chosePhotoFromGallery, cleanPhotos} =
     useImagePick(closeSheetBottom);
+
+  console.log(image, 'Jenny');
 
   const handleSave = async data => {
     setLoading(true);
@@ -81,7 +85,9 @@ export default function CreateItemScreen({navigation}) {
 
   const hasUnsavedChanges = () => {
     const {code, name, cost, description} = control._formValues;
-    const validation = code || name || cost || description ? true : false;
+    console.log(control._formValues, image, 'le vale verga');
+    const validation =
+      image || code || name || cost || description ? true : false;
     return validation ? true : false;
   };
 
