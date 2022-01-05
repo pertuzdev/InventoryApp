@@ -20,7 +20,7 @@ export default function HomeScreen({route, navigation}) {
   const [totalCost, setTotalCost] = useState(0);
   const [search, setSearch] = useState('');
 
-  //console.log(totalQty, totalCost, 'Sheary Tan');
+  console.log(totalQty, totalCost, 'Sheary Tan');
 
   const showToast = (message = '') => {
     ToastAndroid.show(message, ToastAndroid.SHORT);
@@ -38,6 +38,7 @@ export default function HomeScreen({route, navigation}) {
   useEffect(() => {
     if (route.params?.message) {
       showToast(route.params.message);
+      navigation.setParams({message: ''});
     }
     if (items.length > 0) {
       const quantArr = items.map(item => item.quantity);
@@ -53,7 +54,7 @@ export default function HomeScreen({route, navigation}) {
       setTotalQty(0);
       setTotalCost(0);
     }
-  }, [route.params?.message, items]);
+  }, [route.params?.message, items, navigation]);
 
   return (
     <SafeAreaView style={styles.container}>
