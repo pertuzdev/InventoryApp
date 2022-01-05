@@ -38,13 +38,15 @@ import {uploadFile} from '../../services/cloudStorage/uploadFile';
 import {useAlertOnGoBack} from '../../hooks/useAlertOnGoBack';
 import {alertOnGoBack} from '../../helpers/alertOnGoBack';
 import BottomOptions from '../../components/BottomOptions';
+import useImagePick from '../../hooks/useImagePick';
 
 export default function CreateItemScreen({navigation}) {
   const dateCaptured = new Date();
 
   const refRBSheet = useRef();
 
-  const [image, setImage] = useState(null);
+  //const [image, setImage] = useState(null);
+
   const [loading, setLoading] = useState(false);
 
   const {
@@ -72,45 +74,8 @@ export default function CreateItemScreen({navigation}) {
     refRBSheet.current.close();
   };
 
-  const cleanPhotos = () => {
-    ImagePicker.cleanPermanentFiles() //cleanPermanentFiles
-      .then(() => {
-        console.log('removed all images from pictures directory');
-      })
-      .catch(e => {
-        alert(e);
-      });
-  };
-
-  const chosePhotoFromGallery = () => {
-    ImagePicker.openPicker({
-      width: 400,
-      height: 400,
-      cropping: true,
-    })
-      .then(img => {
-        setImage(img.path);
-        closeSheetBottom();
-      })
-      .catch(e => {
-        console.log(e);
-      });
-  };
-
-  const takePhoto = () => {
-    ImagePicker.openCamera({
-      width: 400,
-      height: 400,
-      cropping: true,
-    })
-      .then(img => {
-        setImage(img.path);
-        closeSheetBottom();
-      })
-      .catch(e => {
-        console.log(e);
-      });
-  };
+  const {image, takePhoto, chosePhotoFromGallery, cleanPhotos} =
+    useImagePick(closeSheetBottom);
 
   const handleSave = async data => {
     setLoading(true);
