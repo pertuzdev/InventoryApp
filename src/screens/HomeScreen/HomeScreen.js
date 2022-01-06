@@ -38,7 +38,7 @@ export default function HomeScreen({route, navigation}) {
     }
     if (items.length > 0) {
       const quantArr = items.map(item => item.quantity);
-      const cost = items.map(item => item.cost);
+      const cost = items.map(item => item.cost * item.quantity);
 
       const sumReducer = (prev, curr) => prev + curr;
 
