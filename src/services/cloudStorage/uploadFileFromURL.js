@@ -1,11 +1,17 @@
 import storage from '@react-native-firebase/storage';
 
 export const uploadFileFromURL = async (pathURL, fileLocation) => {
-  const reference = storage().refFromURL(pathURL);
-  await reference.putFile(fileLocation);
-  console.log('File updated!');
+  //console.log(pathURL, fileLocation, 'AIUDA');
+  try {
+    const reference = storage().refFromURL(pathURL);
+    console.log(reference, 'reference');
+    await reference.putFile(fileLocation);
+    console.log('File updated!');
+  } catch (e) {
+    console.log(e);
+  }
 
-  const url = await storage().ref(pathURL).getDownloadURL();
+  //const url = await storage().refFromURL(pathURL).getDownloadURL();
 
-  return url;
+  // return url;
 };

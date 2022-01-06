@@ -55,12 +55,17 @@ export default function CreateItemScreen({navigation}) {
 
   console.log(image, 'Jenny');
 
+  const buildPathRef = ({itemName}) => {
+    const nameWithoutSpaces = itemName.replace(/\s/g, '');
+    return `/images/InventoryApp_Image_${nameWithoutSpaces}_${Date.parse(
+      new Date(),
+    )}.jpg`;
+  };
+
   const handleSave = async data => {
     setLoading(true);
     if (image) {
-      const pathRef = `/images/InventoryApp_Image_${data.name}_${Math.floor(
-        Math.random() * 1500,
-      )}.jpg`;
+      const pathRef = buildPathRef({itemName: data.name});
 
       const url = await uploadFile(pathRef, image);
       data.imageURL = url;

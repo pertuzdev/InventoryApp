@@ -19,12 +19,14 @@ import ActivityIndicator from '../../components/ActivityIndicator';
 import BottomOptions from '../../components/BottomOptions';
 import SelectImage from '../../components/SelectImage';
 import BottomSheet from '../../components/BottomSheet';
+import {uploadFileFromURL} from '../../services/cloudStorage/uploadFileFromURL';
+import {deleteFileFromURL} from '../../services/cloudStorage/deleteFileFromURL';
 
 export default function EditItemScreen({route, navigation}) {
   const {id, code, name, imageURL, quantity, cost, date, description} =
     route.params;
 
-  console.log(cost, 'donkey');
+  // console.log(cost, 'donkey');
 
   const refRBSheet = useRef();
   const [loading, setLoading] = useState(false);
@@ -44,7 +46,7 @@ export default function EditItemScreen({route, navigation}) {
     },
   });
 
-  console.log(errors, 'errores');
+  //console.log(errors, 'errores');
 
   const openSheetBottom = () => {
     refRBSheet.current.open();
@@ -57,20 +59,33 @@ export default function EditItemScreen({route, navigation}) {
   const {image, takePhoto, chosePhotoFromGallery, cleanPhotos} =
     useImagePick(closeSheetBottom);
 
+  const buildPathRef = ({itemName}) => {
+    const nameWithoutSpaces = itemName.replace(/\s/g, '');
+    return `/images/InventoryApp_Image_${nameWithoutSpaces}_${Date.parse(
+      new Date(),
+    )}.jpg`;
+  };
+
   const handleSave = async data => {
     setLoading(true);
+    const pathRef = buildPathRef({itemName: data.name});
 
-    if (image) {
-      const pathRef = `/images/InventoryApp_Image_${data.name}_${Math.floor(
-        Math.random() * 1500,
-      )}.jpg`;
+    if (image && !imageURL) {
       const url = await uploadFile(pathRef, image);
       data.imageURL = url;
-    } else if (imageURL) {
+    } else if (image && imageURL) {
+      console.log(imageURL, '|||', image, '|||', 'SEGUNDO');
+      await deleteFileFromURL(imageURL);
+      const url = await uploadFile(pathRef, image);
+      data.imageURL = url;
+      //console.log(url, 'KILLME2');
+    } else if (!image && imageURL) {
+      //console.log(imageURL, 'TERCERO');
       data.imageURL = imageURL;
     }
 
     data.cost = Number(data.cost);
+    data.quantity = Number(data.quantity);
 
     data.date = firestore.Timestamp.fromDate(data.date);
 

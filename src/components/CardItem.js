@@ -18,7 +18,7 @@ export default function CardItem({
   date = {},
   description = '',
 }) {
-  //console.log(id, 'identificador');
+  console.log(imageURL, 'imagen');
   const src = require('../assets/images/card_image.png');
 
   const handlePress = () => {

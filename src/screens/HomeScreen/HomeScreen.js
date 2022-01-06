@@ -10,6 +10,8 @@ import useItems from '../../hooks/useItems';
 export default function HomeScreen({route, navigation}) {
   const {items, loading} = useItems();
 
+  console.log(items, 'items');
+
   const [totalQty, setTotalQty] = useState(0);
   const [totalCost, setTotalCost] = useState(0);
   const [search, setSearch] = useState('');
