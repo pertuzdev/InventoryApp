@@ -10,12 +10,12 @@ import SearchBar from './SearchBar';
 import InfoCard from './InfoCard';
 
 export default function Header({style, onSearchBarPress, totalQty, totalCost}) {
-  const src = require('../assets/icons/ic_profile.png');
+  const src = require('../assets/images/logo.png');
   return (
     <View style={[styles.container, style]}>
       <View style={styles.wrapper}>
-        <View>
-          <Image source={src} />
+        <View style={styles.imgCont}>
+          <Image source={src} style={styles.img} />
         </View>
         <View style={styles.txtWrapper}>
           <Text style={TextStyles.title}>Variedades Alex</Text>
@@ -44,10 +44,21 @@ const styles = StyleSheet.create({
   wrapper: {
     flexDirection: 'row',
     alignItems: 'center',
+    // backgroundColor: 'red',
   },
   imgCont: {
-    width: '20%',
-    height: '90%',
+    width: 80,
+    height: 50,
+    justifyContent: 'center',
+    // backgroundColor: 'red',
+  },
+  img: {
+    //width: 200,
+    //height: 200,
+    height: '100%',
+    width: '100%',
+    resizeMode: 'contain',
+    // backgroundColor: 'blue',
   },
   txtWrapper: {
     marginLeft: 20,
@@ -58,8 +69,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   searchBar: {
-    marginTop: 24,
-    marginBottom: 24,
+    marginTop: 14,
+    marginBottom: 14,
   },
   infoCard: {
     width: '45%',

@@ -1,11 +1,14 @@
 import React, {useEffect, useState} from 'react';
-import {View, ToastAndroid, StyleSheet} from 'react-native';
+import {View, ToastAndroid, StyleSheet, Dimensions} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
 import Button from '../../components/Button/Button';
 import Header from '../../components/Header';
 import ItemList from '../../components/ItemList';
 import useItems from '../../hooks/useItems';
+import {Colors} from '../../styles/Colors';
+
+const w = Dimensions.get('window').width;
 
 export default function HomeScreen({route, navigation}) {
   const {items, loading} = useItems();
@@ -89,16 +92,33 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   header: {
-    margin: 16,
+    marginHorizontal: 16,
     marginTop: 20,
+    marginBottom: 8,
   },
   content: {
     flex: 1,
     justifyContent: 'flex-start',
   },
 
-  button: {},
+  button: {
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 8,
+    },
+    shadowOpacity: 0.75,
+    shadowRadius: 3.84,
+    elevation: 8,
+  },
   btnContainer: {
-    padding: 16,
+    position: 'absolute',
+    width: w - 32,
+    bottom: 8,
+    left: '50%',
+    marginLeft: (w - 32) / -2,
+
+    //marginHorizontal: 16,
+    //marginBottom: 16,
   },
 });
