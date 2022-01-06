@@ -53,8 +53,6 @@ export default function CreateItemScreen({navigation}) {
   const {image, takePhoto, chosePhotoFromGallery, cleanPhotos} =
     useImagePick(closeSheetBottom);
 
-  console.log(image, 'Jenny');
-
   const buildPathRef = ({itemName}) => {
     const nameWithoutSpaces = itemName.replace(/\s/g, '');
     return `/images/InventoryApp_Image_${nameWithoutSpaces}_${Date.parse(
@@ -66,7 +64,6 @@ export default function CreateItemScreen({navigation}) {
     setLoading(true);
     if (image) {
       const pathRef = buildPathRef({itemName: data.name});
-
       const url = await uploadFile(pathRef, image);
       data.imageURL = url;
     }
@@ -123,13 +120,5 @@ export default function CreateItemScreen({navigation}) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  },
-  scrollCont: {},
-  options: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginTop: 16,
-    marginBottom: 16,
-    marginHorizontal: 20,
   },
 });

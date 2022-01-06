@@ -188,9 +188,9 @@ const styles = StyleSheet.create({
       width: 0,
       height: 4,
     },
-    shadowOpacity: 0.25,
+    shadowOpacity: 0.45,
     shadowRadius: 3.84,
-    elevation: 10,
+    elevation: 20,
   },
   productInfo: {
     paddingHorizontal: 16,

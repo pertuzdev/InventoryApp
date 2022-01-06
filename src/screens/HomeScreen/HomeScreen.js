@@ -2,24 +2,20 @@ import React, {useEffect, useState} from 'react';
 import {View, ToastAndroid, StyleSheet, Dimensions} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
+import useGetTotals from '../../hooks/useGetTotals';
+import useItems from '../../hooks/useItems';
+
 import Button from '../../components/Button/Button';
 import Header from '../../components/Header';
 import ItemList from '../../components/ItemList';
-import useItems from '../../hooks/useItems';
-import {Colors} from '../../styles/Colors';
+import {calculateTotalInArr} from '../../helpers/calculateTotalInArr';
+import {roundNumber} from '../../helpers/math';
 
 const w = Dimensions.get('window').width;
 
 export default function HomeScreen({route, navigation}) {
   const {items, loading} = useItems();
-
-  console.log(items, 'items');
-
-  const [totalQty, setTotalQty] = useState(0);
-  const [totalCost, setTotalCost] = useState(0);
-  const [search, setSearch] = useState('');
-
-  console.log(totalQty, totalCost, 'Sheary Tan');
+  const {totalQty, totalCost} = useGetTotals({items});
 
   const showToast = (message = '') => {
     ToastAndroid.show(message, ToastAndroid.SHORT);
@@ -39,20 +35,6 @@ export default function HomeScreen({route, navigation}) {
       showToast(route.params.message);
       navigation.setParams({message: ''});
     }
-    if (items.length > 0) {
-      const quantArr = items.map(item => item.quantity);
-      const cost = items.map(item => item.cost * item.quantity);
-
-      const sumReducer = (prev, curr) => prev + curr;
-
-      setTotalQty(quantArr.reduce(sumReducer));
-      setTotalCost(
-        Math.round((cost.reduce(sumReducer) + Number.EPSILON) * 100) / 100,
-      );
-    } else {
-      setTotalQty(0);
-      setTotalCost(0);
-    }
   }, [route.params?.message, items, navigation]);
 
   return (
@@ -65,12 +47,7 @@ export default function HomeScreen({route, navigation}) {
       />
 
       <View style={styles.content}>
-        <ItemList
-          handleSearch={search}
-          items={items}
-          loading={loading}
-          navigation={navigation}
-        />
+        <ItemList items={items} loading={loading} navigation={navigation} />
       </View>
 
       <View style={styles.btnContainer}>

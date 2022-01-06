@@ -1,5 +1,6 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
+import {Colors} from '../styles/Colors';
 import Button from './Button/Button';
 import TextButton from './Button/TextButton';
 
@@ -26,8 +27,16 @@ const styles = StyleSheet.create({
   options: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 16,
-    marginBottom: 16,
-    marginHorizontal: 20,
+    paddingVertical: 16,
+    paddingHorizontal: 20,
+    backgroundColor: '#fff',
+    shadowColor: Colors.shadowColor,
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.45,
+    shadowRadius: 3.84,
+    elevation: 20,
   },
 });
