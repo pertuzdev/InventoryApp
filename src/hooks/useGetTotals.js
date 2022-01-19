@@ -21,6 +21,7 @@ export default function useGetTotalQuantity({items = []}) {
         ),
       );
     } else {
+      setTotalQty(0);
       setTotalCost(0);
     }
   }, [items]);

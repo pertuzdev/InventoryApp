@@ -24,6 +24,7 @@ export default function ItemList({navigation, items, loading}) {
       ) : (
         <FlatList
           data={items}
+          ListFooterComponentStyle={{paddingBottom: 32}}
           renderItem={({item}) => (
             <CardItem
               key={item.id}

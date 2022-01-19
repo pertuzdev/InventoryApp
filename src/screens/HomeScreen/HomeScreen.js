@@ -35,7 +35,7 @@ export default function HomeScreen({route, navigation}) {
       showToast(route.params.message);
       navigation.setParams({message: ''});
     }
-  }, [route.params?.message, items, navigation]);
+  }, [route.params?.message, navigation]);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -89,13 +89,8 @@ const styles = StyleSheet.create({
     elevation: 8,
   },
   btnContainer: {
-    position: 'absolute',
-    width: w - 32,
-    bottom: 8,
-    left: '50%',
-    marginLeft: (w - 32) / -2,
-
-    //marginHorizontal: 16,
-    //marginBottom: 16,
+    marginHorizontal: 16,
+    marginBottom: 16,
+    paddingTop: 4,
   },
 });
