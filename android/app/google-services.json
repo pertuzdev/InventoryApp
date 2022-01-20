@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "682455905560-lk5j3r1q19p5mpcfc7ife5nn397fpnti.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.inventoryapp",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
           "client_id": "682455905560-opj8pf3fmkmitlnr40qs3n0brv67fi56.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
