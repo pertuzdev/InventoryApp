@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {StyleSheet, View, Text, Image} from 'react-native';
 
 import AppImage from './AppImage';
@@ -8,9 +8,12 @@ import {Colors} from '../styles/Colors';
 import {TextStyles} from '../styles/TextStyles';
 import SearchBar from './SearchBar';
 import InfoCard from './InfoCard';
+import Button from './Button/Button';
+import {AuthContext} from '../navigation/AuthProvider';
 
 export default function Header({style, onSearchBarPress, totalQty, totalCost}) {
   const src = require('../assets/images/logo.png');
+  const {logout} = useContext(AuthContext);
   return (
     <View style={[styles.container, style]}>
       <View style={styles.wrapper}>
@@ -20,6 +23,14 @@ export default function Header({style, onSearchBarPress, totalQty, totalCost}) {
         <View style={styles.txtWrapper}>
           <Text style={TextStyles.title}>Variedades Alex</Text>
           <Text style={TextStyles.cardDescription}>Perfil / Propietario</Text>
+        </View>
+        <View style={styles.btnContainer}>
+          <Button
+            label="Salir"
+            backgroundColor={Colors.red}
+            style={{width: '80%', paddingVertical: 12}}
+            onPress={() => logout()}
+          />
         </View>
       </View>
       <SearchBar style={styles.searchBar} onPress={onSearchBarPress} />
@@ -74,5 +85,12 @@ const styles = StyleSheet.create({
   },
   infoCard: {
     width: '45%',
+  },
+  btnContainer: {
+    width: 110,
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });

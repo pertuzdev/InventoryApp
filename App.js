@@ -5,15 +5,10 @@ import {NavigationContainer} from '@react-navigation/native';
 
 import HomeStack from './src/navigation/HomeStack';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
+import Providers from './src/navigation';
 
 const App = () => {
-  return (
-    <SafeAreaProvider>
-      <NavigationContainer>
-        <HomeStack />
-      </NavigationContainer>
-    </SafeAreaProvider>
-  );
+  return <Providers />;
 };
 
 const styles = StyleSheet.create({});
