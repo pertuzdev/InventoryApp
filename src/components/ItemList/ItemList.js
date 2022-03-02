@@ -1,11 +1,10 @@
-import React, {useEffect, useState} from 'react';
-import firestore from '@react-native-firebase/firestore';
+import React from 'react';
+import {FlatList, Text, View} from 'react-native';
 
-import {FlatList, StyleSheet, Text, View} from 'react-native';
+import {styles} from './ItemList.styles';
+import {TextStyles} from '../../styles/TextStyles';
+
 import CardItem from './CardItem';
-import useItems from '../hooks/useItems';
-import {TextStyles} from '../styles/TextStyles';
-import {SearchBar} from 'react-native-screens';
 
 export default function ItemList({navigation, items, loading}) {
   //console.log(items[0].id, 'rosé');
@@ -45,22 +44,3 @@ export default function ItemList({navigation, items, loading}) {
     </>
   );
 }
-
-const styles = StyleSheet.create({
-  placeholder: {
-    textAlign: 'center',
-  },
-  content: {
-    flex: 1,
-    justifyContent: 'flex-start',
-  },
-  noItems: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  button: {},
-  btnContainer: {
-    padding: 16,
-  },
-});

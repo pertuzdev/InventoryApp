@@ -2,9 +2,9 @@ import React, {useState} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
-import useItems from '../../hooks/useItems';
+import {styles} from './SearchScreen.styles';
 
-import {Colors} from '../../styles/Colors';
+import useItems from '../../hooks/useItems';
 
 import ItemList from '../../components/ItemList';
 import SearchHeader from '../../components/SearchHeader';
@@ -46,23 +46,3 @@ export default function SearchScreen({route, navigation}) {
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'space-between',
-  },
-
-  notFoundWrapper: {
-    paddingTop: 24,
-    paddingHorizontal: 20,
-    flex: 1,
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-  },
-  notFoundtext: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: Colors.darkGray,
-  },
-});

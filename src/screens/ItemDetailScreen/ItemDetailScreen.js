@@ -1,22 +1,15 @@
 import React, {useEffect} from 'react';
-import {
-  Image,
-  Pressable,
-  Alert,
-  StyleSheet,
-  Text,
-  View,
-  ToastAndroid,
-} from 'react-native';
+import {Image, Alert, Text, View, ToastAndroid} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
+
+import {styles} from './ItemDetailScreen.styles';
+import {Colors} from '../../styles/Colors';
+import {TextStyles} from '../../styles/TextStyles';
 
 import {deleteItem} from '../../services/firestore/deleteItem';
 import {deleteFileFromURL} from '../../services/cloudStorage/deleteFileFromURL';
 
 import {formatDate} from '../../helpers/dates';
-
-import {Colors} from '../../styles/Colors';
-import {TextStyles} from '../../styles/TextStyles';
 
 import Button from '../../components/Button/Button';
 
@@ -140,81 +133,3 @@ export default function ItemDetailScreen({route, navigation}) {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  scrollCont: {},
-  head: {
-    alignItems: 'center',
-    marginTop: 20,
-  },
-  title: {
-    marginBottom: 12,
-    marginHorizontal: 16,
-    textAlign: 'center',
-  },
-  imgCont: {
-    width: 200,
-    height: 200,
-    backgroundColor: Colors.gray,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: 15,
-  },
-  img: {
-    //flex: 1,
-    //resizeMode: 'contain',
-    width: 200,
-    height: 200,
-    borderRadius: 15,
-    //backgroundColor: 'blue',
-  },
-  splashImg: {
-    width: 100,
-    height: 100,
-    resizeMode: 'contain',
-    //backgroundColor: 'blue',
-  },
-  options: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingVertical: 16,
-    paddingHorizontal: 20,
-    backgroundColor: '#fff',
-    shadowColor: Colors.shadowColor,
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    shadowOpacity: 0.45,
-    shadowRadius: 3.84,
-    elevation: 20,
-  },
-  productInfo: {
-    paddingHorizontal: 16,
-    paddingVertical: 16,
-  },
-  infoRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginVertical: 12,
-  },
-  productLabel: {
-    fontFamily: 'Roboto-Medium',
-    fontSize: 18,
-    color: Colors.darkGray,
-  },
-  descLabel: {
-    fontFamily: 'Roboto-Medium',
-    fontSize: 18,
-    color: Colors.darkGray,
-    marginBottom: 8,
-  },
-  productTxt: {
-    fontFamily: 'Roboto-Medium',
-    fontSize: 18,
-    color: Colors.blackGray,
-  },
-});

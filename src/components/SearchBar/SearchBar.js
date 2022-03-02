@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import {
-  StyleSheet,
   View,
   Text,
   TouchableOpacity,
@@ -8,6 +7,8 @@ import {
   Image,
   Pressable,
 } from 'react-native';
+
+import {styles} from './SearchBar.styles';
 import {Colors} from '../styles/Colors';
 
 export default function SearchBar({
@@ -63,45 +64,3 @@ export default function SearchBar({
     </Pressable>
   );
 }
-
-const styles = StyleSheet.create({
-  txtError: {
-    marginTop: '2%',
-    width: '89%',
-    color: 'white',
-  },
-  vwClear: {
-    flex: 0.2,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  textInput: {
-    // backgroundColor: 'green',
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-
-  vwSearch: {
-    flex: 0.2,
-    justifyContent: 'center',
-    alignItems: 'center',
-    // width: 40,
-    // backgroundColor: 'red'
-  },
-  icSearch: {
-    height: 18,
-    width: 18,
-  },
-  searchContainer: {
-    backgroundColor: Colors.lightGray,
-    width: '100%',
-    height: 40,
-    flexDirection: 'row',
-    borderRadius: 15,
-  },
-  container: {
-    // height: '100%', width: '100%'
-    //flex: 1,
-  },
-});

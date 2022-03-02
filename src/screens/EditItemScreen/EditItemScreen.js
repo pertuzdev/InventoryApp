@@ -14,19 +14,17 @@ import useImagePick from '../../hooks/useImagePick';
 
 import {alertOnGoBack} from '../../helpers/alertOnGoBack';
 
-import ItemForm from '../../components/form/ItemForm';
-import ActivityIndicator from '../../components/ActivityIndicator';
+import {deleteFileFromURL} from '../../services/cloudStorage/deleteFileFromURL';
+
+import ItemForm from '../../components/Form/ItemForm';
+import ActivityIndicator from '../../components/ActivityIndicator/ActivityIndicator';
 import BottomOptions from '../../components/BottomOptions';
 import SelectImage from '../../components/SelectImage';
 import BottomSheet from '../../components/BottomSheet';
-import {uploadFileFromURL} from '../../services/cloudStorage/uploadFileFromURL';
-import {deleteFileFromURL} from '../../services/cloudStorage/deleteFileFromURL';
 
 export default function EditItemScreen({route, navigation}) {
   const {id, code, name, imageURL, quantity, cost, date, description} =
     route.params;
-
-  // console.log(cost, 'donkey');
 
   const refRBSheet = useRef();
   const [loading, setLoading] = useState(false);
@@ -45,8 +43,6 @@ export default function EditItemScreen({route, navigation}) {
       description: description,
     },
   });
-
-  //console.log(errors, 'errores');
 
   const openSheetBottom = () => {
     refRBSheet.current.open();
@@ -78,9 +74,7 @@ export default function EditItemScreen({route, navigation}) {
       await deleteFileFromURL(imageURL);
       const url = await uploadFile(pathRef, image);
       data.imageURL = url;
-      //console.log(url, 'KILLME2');
     } else if (!image && imageURL) {
-      //console.log(imageURL, 'TERCERO');
       data.imageURL = imageURL;
     }
 
@@ -154,17 +148,3 @@ export default function EditItemScreen({route, navigation}) {
     </ActivityIndicator>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  scrollCont: {},
-  options: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginTop: 16,
-    marginBottom: 16,
-    marginHorizontal: 20,
-  },
-});

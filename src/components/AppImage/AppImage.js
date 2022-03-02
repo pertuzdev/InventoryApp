@@ -1,8 +1,8 @@
 import React from 'react';
 
-import {Image, StyleSheet, View, Text} from 'react-native';
+import {Image, View} from 'react-native';
 
-import {Colors} from '../styles/Colors';
+import {styles} from './AppImage.styles';
 
 export default function AppImage({
   style,
@@ -14,11 +14,3 @@ export default function AppImage({
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {},
-  img: {
-    flex: 1,
-    resizeMode: 'contain',
-  },
-});

@@ -4,6 +4,8 @@ import {ScrollView} from 'react-native-gesture-handler';
 
 import {useForm} from 'react-hook-form';
 
+import {styles} from './CreateItemScreen.styles';
+
 import firestore from '@react-native-firebase/firestore';
 
 import {addItem} from '../../services/firestore/addItem';
@@ -14,8 +16,8 @@ import useImagePick from '../../hooks/useImagePick';
 
 import {alertOnGoBack} from '../../helpers/alertOnGoBack';
 
-import ItemForm from '../../components/form/ItemForm';
-import ActivityIndicator from '../../components/ActivityIndicator';
+import ItemForm from '../../components/Form/ItemForm';
+import ActivityIndicator from '../../components/ActivityIndicator/ActivityIndicator';
 import BottomOptions from '../../components/BottomOptions';
 import BottomSheet from '../../components/BottomSheet';
 import SelectImage from '../../components/SelectImage';
@@ -123,9 +125,3 @@ export default function CreateItemScreen({navigation}) {
     </ActivityIndicator>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});

@@ -1,23 +1,18 @@
-import React, {useContext, useEffect, useState} from 'react';
-import {
-  View,
-  StyleSheet,
-  ScrollView,
-  Image,
-  Text,
-  ToastAndroid,
-  TextInput,
-} from 'react-native';
-import {AuthContext} from '../navigation/AuthProvider';
+import React, {useContext, useEffect} from 'react';
+import {View, ScrollView, Image, ToastAndroid} from 'react-native';
 
-import Button from '../components/Button/Button';
+import {styles} from './LoginScreen.styles';
+
+import {AuthContext} from '../../navigation/AuthProvider';
+
+import Button from '../../components/Button/Button';
 
 import {
   GoogleSignin,
   GoogleSigninButton,
 } from '@react-native-google-signin/google-signin';
 import {useForm} from 'react-hook-form';
-import AuthForm from '../components/form/AuthForm';
+import AuthForm from '../../components/Form/AuthForm';
 
 const LoginScreen = ({navigation}) => {
   const {
@@ -91,51 +86,3 @@ const LoginScreen = ({navigation}) => {
 };
 
 export default LoginScreen;
-
-const styles = StyleSheet.create({
-  container: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 20,
-    paddingTop: 50,
-  },
-
-  logWp: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center',
-  },
-  logo: {
-    height: 250,
-    width: 250,
-    resizeMode: 'contain',
-  },
-  btnWp: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center',
-  },
-  text: {
-    fontFamily: 'Kufam-SemiBoldItalic',
-    fontSize: 28,
-    marginBottom: 10,
-    color: '#051d5f',
-  },
-  navButton: {
-    marginTop: 15,
-  },
-  forgotButton: {
-    marginVertical: 35,
-  },
-  navButtonText: {
-    fontSize: 18,
-    fontWeight: '500',
-    color: '#2e64e5',
-    fontFamily: 'Lato-Regular',
-  },
-  btnWrapper: {
-    display: 'flex',
-    alignItems: 'center',
-    marginVertical: 20,
-  },
-});
