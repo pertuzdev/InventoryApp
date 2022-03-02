@@ -2,9 +2,9 @@ import React from 'react';
 import {FlatList, Text, View} from 'react-native';
 
 import {styles} from './ItemList.styles';
-import {TextStyles} from '../../styles/TextStyles';
+import {TextStyles} from '../../styles/globalStyles';
 
-import CardItem from './CardItem';
+import CardItem from '../CardItem/CardItem';
 
 export default function ItemList({navigation, items, loading}) {
   //console.log(items[0].id, 'rosé');

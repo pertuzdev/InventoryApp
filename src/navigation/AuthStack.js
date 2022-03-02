@@ -1,10 +1,9 @@
-import React, {useState, useEffect, useContext} from 'react';
+import React, {useEffect} from 'react';
 
 import {createStackNavigator} from '@react-navigation/stack';
-import LoginScreen from '../screens/LoginScreen';
+import LoginScreen from '../screens/LoginScreen/LoginScreen';
 
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
-import {AuthContext} from './AuthProvider';
 
 const Stack = createStackNavigator();
 

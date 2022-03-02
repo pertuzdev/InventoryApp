@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {Colors} from '../../styles/Colors';
+import {colors} from '../../styles/globalStyles';
 
 export const styles = StyleSheet.create({
   container: {
@@ -18,7 +18,7 @@ export const styles = StyleSheet.create({
   imgCont: {
     width: 75,
     height: 75,
-    backgroundColor: Colors.gray,
+    backgroundColor: colors.gray,
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 10,

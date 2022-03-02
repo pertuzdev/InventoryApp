@@ -6,8 +6,8 @@ import {
   Text,
 } from 'react-native';
 
-import {Colors} from '../../styles/Colors';
-import {TextStyles} from '../../styles/TextStyles';
+import {colors} from '../../styles/globalStyles';
+import {TextStyles} from '../../styles/globalStyles';
 
 export default function TextButton({label = 'label', onPress}) {
   const fadeAnim = useRef(new Animated.Value(1)).current;
@@ -49,6 +49,6 @@ const styles = StyleSheet.create({
   },
   btnText: {
     textAlign: 'center',
-    color: Colors.primaryBlue,
+    color: colors.primaryBlue,
   },
 });

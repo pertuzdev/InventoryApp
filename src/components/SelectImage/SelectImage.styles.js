@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {Colors} from '../../styles/Colors';
+import {colors} from '../../styles/globalStyles';
 
 export const styles = StyleSheet.create({
   head: {
@@ -10,7 +10,7 @@ export const styles = StyleSheet.create({
   imgCont: {
     width: 200,
     height: 200,
-    backgroundColor: Colors.gray,
+    backgroundColor: colors.gray,
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 15,
@@ -35,7 +35,7 @@ export const styles = StyleSheet.create({
     bottom: -10,
     right: -10,
     //margin: -16,
-    backgroundColor: Colors.primaryBlue,
+    backgroundColor: colors.primaryBlue,
     padding: 8,
     borderWidth: 1,
     borderRadius: 100,

@@ -18,9 +18,9 @@ import {alertOnGoBack} from '../../helpers/alertOnGoBack';
 
 import ItemForm from '../../components/Form/ItemForm';
 import ActivityIndicator from '../../components/ActivityIndicator/ActivityIndicator';
-import BottomOptions from '../../components/BottomOptions';
-import BottomSheet from '../../components/BottomSheet';
-import SelectImage from '../../components/SelectImage';
+import BottomOptions from '../../components/BottomOptions/BottomOptions';
+import BottomSheet from '../../components/BottomSheet/BottomSheet';
+import SelectImage from '../../components/SelectImage/SelectImage';
 
 export default function CreateItemScreen({navigation}) {
   const dateCaptured = new Date();

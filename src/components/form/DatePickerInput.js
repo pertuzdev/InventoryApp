@@ -10,7 +10,7 @@ import {
 import {Controller} from 'react-hook-form';
 import {TextInput} from 'react-native-gesture-handler';
 import ErrorMessage from './ErrorMessage';
-import {Colors} from '../../styles/Colors';
+import {colors} from '../../styles/globalStyles';
 import useDate from '../../hooks/useDate';
 
 export default function DatePickerPickerInput({control, errors, dateCaptured}) {
@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
     marginLeft: 8,
     fontFamily: 'Roboto-Medium',
     fontSize: 16,
-    color: Colors.darkGray,
+    color: colors.darkGray,
   },
   wrapper: {
     flexDirection: 'row',
@@ -96,12 +96,12 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingHorizontal: 16,
     borderWidth: 1,
-    borderColor: Colors.darkGray,
+    borderColor: colors.darkGray,
     borderRadius: 15,
     height: 40,
   },
   text: {
-    color: Colors.darkGray,
+    color: colors.darkGray,
     fontWeight: 'bold',
     height: 40,
     paddingVertical: 10,

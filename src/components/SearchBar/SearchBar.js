@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 
 import {styles} from './SearchBar.styles';
-import {Colors} from '../styles/Colors';
+import {colors} from '../../styles/globalStyles';
 
 export default function SearchBar({
   handleSearch,
@@ -26,7 +26,7 @@ export default function SearchBar({
         <View style={styles.vwSearch}>
           <Image
             style={styles.icSearch}
-            source={require('../assets/icons/ic_search.png')}
+            source={require('../../assets/icons/ic_search.png')}
           />
         </View>
 
@@ -35,7 +35,7 @@ export default function SearchBar({
           editable={onPress ? false : true}
           autoFocus={focus}
           placeholder="Busca por nombre o ID..."
-          placeholderTextColor={Colors.gray}
+          placeholderTextColor={colors.gray}
           style={styles.textInput}
           onChangeText={text => {
             //let letters = /^$|^[a-zA-Z._\b ]+$/;
@@ -53,7 +53,7 @@ export default function SearchBar({
             style={styles.vwClear}>
             <Image
               style={styles.icClear}
-              source={require('../assets/icons/ic_clear.png')}
+              source={require('../../assets/icons/ic_clear.png')}
             />
           </TouchableOpacity>
         ) : (

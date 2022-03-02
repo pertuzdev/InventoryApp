@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import {useForm, Controller} from 'react-hook-form';
 import ErrorMessage from './ErrorMessage';
-import {Colors} from '../../styles/Colors';
+import {colors} from '../../styles/globalStyles';
 
 export default function QuantityInput({
   label = '',
@@ -58,7 +58,7 @@ export default function QuantityInput({
                 <Pressable
                   style={styles.btn}
                   android_ripple={{
-                    color: Colors.gray,
+                    color: colors.gray,
                   }}
                   onPress={() => handleSubtract(value, onChange)}>
                   <Image source={require('../../assets/icons/ic_minus.png')} />
@@ -75,7 +75,7 @@ export default function QuantityInput({
                 <Pressable
                   style={styles.btn}
                   android_ripple={{
-                    color: Colors.gray,
+                    color: colors.gray,
                   }}
                   onPress={() => handleAdd(value, onChange)}>
                   <Image source={require('../../assets/icons/ic_plus.png')} />
@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
     marginLeft: 8,
     fontFamily: 'Roboto-Medium',
     fontSize: 16,
-    color: Colors.darkGray,
+    color: colors.darkGray,
   },
   input: {
     textAlign: 'center',

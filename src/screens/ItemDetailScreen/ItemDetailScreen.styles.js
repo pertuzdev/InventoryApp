@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {Colors} from '../../styles/Colors';
+import {colors} from '../../styles/globalStyles';
 
 export const styles = StyleSheet.create({
   container: {
@@ -18,7 +18,7 @@ export const styles = StyleSheet.create({
   imgCont: {
     width: 200,
     height: 200,
-    backgroundColor: Colors.gray,
+    backgroundColor: colors.gray,
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 15,
@@ -39,7 +39,7 @@ export const styles = StyleSheet.create({
     paddingVertical: 16,
     paddingHorizontal: 20,
     backgroundColor: '#fff',
-    shadowColor: Colors.shadowColor,
+    shadowColor: colors.shadowColor,
     shadowOffset: {
       width: 0,
       height: 4,
@@ -60,17 +60,17 @@ export const styles = StyleSheet.create({
   productLabel: {
     fontFamily: 'Roboto-Medium',
     fontSize: 18,
-    color: Colors.darkGray,
+    color: colors.darkGray,
   },
   descLabel: {
     fontFamily: 'Roboto-Medium',
     fontSize: 18,
-    color: Colors.darkGray,
+    color: colors.darkGray,
     marginBottom: 8,
   },
   productTxt: {
     fontFamily: 'Roboto-Medium',
     fontSize: 18,
-    color: Colors.blackGray,
+    color: colors.blackGray,
   },
 });

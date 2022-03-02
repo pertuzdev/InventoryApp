@@ -1,6 +1,6 @@
 import React from 'react';
 import {Text, StyleSheet} from 'react-native';
-import {Colors} from '../../styles/Colors';
+import {colors} from '../../styles/globalStyles';
 
 const ErrorMessage = ({errors, name}) => {
   //console.log(errors, 'AAAHH');
@@ -17,7 +17,7 @@ const ErrorMessage = ({errors, name}) => {
 const styles = StyleSheet.create({
   errorTxt: {
     fontSize: 10,
-    color: Colors.red,
+    color: colors.red,
     marginLeft: 8,
   },
 });

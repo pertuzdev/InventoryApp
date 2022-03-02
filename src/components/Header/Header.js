@@ -2,16 +2,16 @@ import React, {useContext} from 'react';
 import {View, Text, Image} from 'react-native';
 
 import {styles} from './Header.styles';
-import {Colors} from '../../styles/Colors';
-import {TextStyles} from '../../styles/TextStyles';
+import {colors} from '../../styles/globalStyles';
+import {TextStyles} from '../../styles/globalStyles';
 
-import SearchBar from '../SearchBar';
-import InfoCard from '../InfoCard';
+import SearchBar from '../SearchBar/SearchBar';
+import InfoCard from '../InfoCard/InfoCard';
 import Button from '../Button/Button';
 import {AuthContext} from '../../navigation/AuthProvider';
 
 export default function Header({style, onSearchBarPress, totalQty, totalCost}) {
-  const src = require('../assets/images/logo.png');
+  const src = require('../../assets/images/logo.png');
   const {logout} = useContext(AuthContext);
   return (
     <View style={[styles.container, style]}>
@@ -26,7 +26,7 @@ export default function Header({style, onSearchBarPress, totalQty, totalCost}) {
         <View style={styles.btnContainer}>
           <Button
             label="Salir"
-            backgroundColor={Colors.red}
+            backgroundColor={colors.red}
             style={{width: '80%', paddingVertical: 12}}
             onPress={() => logout()}
           />

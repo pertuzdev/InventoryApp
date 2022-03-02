@@ -2,8 +2,8 @@ import React from 'react';
 import {View, Text, Pressable, Image} from 'react-native';
 
 import {styles} from './CardItem.styles';
-import {Colors} from '../../styles/Colors';
-import {TextStyles} from '../../styles/TextStyles';
+import {colors} from '../../styles/globalStyles';
+import {TextStyles} from '../../styles/globalStyles';
 
 export default function CardItem({
   navigation,
@@ -35,7 +35,7 @@ export default function CardItem({
   return (
     <Pressable
       style={[styles.container, style]}
-      android_ripple={{color: Colors.mediumGray}}
+      android_ripple={{color: colors.mediumGray}}
       onPress={handlePress}>
       <View style={[styles.wrapper]}>
         <View style={styles.imgCont}>
@@ -44,7 +44,7 @@ export default function CardItem({
           ) : (
             <Image
               style={styles.splashImg}
-              source={require('../assets/icons/ic_camera.png')}
+              source={require('../../assets/icons/ic_camera.png')}
             />
           )}
         </View>
@@ -58,7 +58,7 @@ export default function CardItem({
           </Text>
         </View>
         <View style={styles.arrow}>
-          <Image source={require('../assets/icons/ic_arrow_right.png')} />
+          <Image source={require('../../assets/icons/ic_arrow_right.png')} />
         </View>
       </View>
     </Pressable>

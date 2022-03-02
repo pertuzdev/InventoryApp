@@ -2,7 +2,7 @@ import React from 'react';
 import {Text, View} from 'react-native';
 
 import {styles} from './InfoCard.styles';
-import {TextStyles} from '../styles/TextStyles';
+import {TextStyles} from '../../styles/globalStyles';
 
 export default function InfoCard({
   value = 0,

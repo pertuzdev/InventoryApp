@@ -8,8 +8,8 @@ import useGetTotals from '../../hooks/useGetTotals';
 import useItems from '../../hooks/useItems';
 
 import Button from '../../components/Button/Button';
-import Header from '../../components/Header';
-import ItemList from '../../components/ItemList';
+import Header from '../../components/Header/Header';
+import ItemList from '../../components/ItemList/ItemList';
 
 export default function HomeScreen({route, navigation}) {
   const {items, loading} = useItems();

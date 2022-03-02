@@ -6,7 +6,7 @@ import {styles} from './AppImage.styles';
 
 export default function AppImage({
   style,
-  src = require('../assets/icons/ic_profile.png'),
+  src = require('../../assets/icons/ic_profile.png'),
 }) {
   return (
     <View style={style}>

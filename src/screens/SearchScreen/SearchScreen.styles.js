@@ -16,6 +16,6 @@ export const styles = StyleSheet.create({
   notFoundtext: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: Colors.darkGray,
+    color: colors.darkGray,
   },
 });

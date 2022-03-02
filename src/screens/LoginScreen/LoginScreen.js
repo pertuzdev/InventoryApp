@@ -62,7 +62,7 @@ const LoginScreen = ({navigation}) => {
     <ScrollView>
       <View style={styles.logWp}>
         <Image
-          source={require('../assets/images/logo.png')}
+          source={require('../../assets/images/logo.png')}
           style={styles.logo}
         />
       </View>

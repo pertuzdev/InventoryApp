@@ -4,7 +4,7 @@ import {Text, View, StyleSheet, TextInput, Pressable} from 'react-native';
 import {useForm, Controller} from 'react-hook-form';
 
 import ErrorMessage from './ErrorMessage';
-import {Colors} from '../../styles/Colors';
+import {colors} from '../../styles/globalStyles';
 
 export default function CostInput({
   label = '',
@@ -56,11 +56,11 @@ const styles = StyleSheet.create({
     marginLeft: 8,
     fontFamily: 'Roboto-Medium',
     fontSize: 16,
-    color: Colors.darkGray,
+    color: colors.darkGray,
   },
   input: {
     backgroundColor: 'white',
-    borderColor: Colors.darkGray,
+    borderColor: colors.darkGray,
     borderWidth: 1,
     height: 40,
     paddingVertical: 10,
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
   },
   inputArea: {
     backgroundColor: 'white',
-    borderColor: Colors.darkGray,
+    borderColor: colors.darkGray,
     textAlignVertical: 'top',
     borderWidth: 1,
     padding: 10,

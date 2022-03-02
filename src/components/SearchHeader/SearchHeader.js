@@ -3,7 +3,7 @@ import {Image, Pressable, View} from 'react-native';
 
 import {styles} from './SearchHeader.styles';
 
-import SearchBar from './SearchBar';
+import SearchBar from '../SearchBar/SearchBar';
 
 export default function SearchHeader({navigation, handleSearch}) {
   return (
@@ -11,7 +11,7 @@ export default function SearchHeader({navigation, handleSearch}) {
       <Pressable
         style={styles.iconContainer}
         onPress={() => navigation.goBack()}>
-        <Image source={require('../assets/icons/ic_back.png')} />
+        <Image source={require('../../assets/icons/ic_back.png')} />
       </Pressable>
       <SearchBar style={styles.searchbar} handleSearch={handleSearch} focus />
     </View>

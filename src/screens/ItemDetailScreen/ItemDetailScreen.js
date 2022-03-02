@@ -3,8 +3,8 @@ import {Image, Alert, Text, View, ToastAndroid} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 
 import {styles} from './ItemDetailScreen.styles';
-import {Colors} from '../../styles/Colors';
-import {TextStyles} from '../../styles/TextStyles';
+import {colors} from '../../styles/globalStyles';
+import {TextStyles} from '../../styles/globalStyles';
 
 import {deleteItem} from '../../services/firestore/deleteItem';
 import {deleteFileFromURL} from '../../services/cloudStorage/deleteFileFromURL';
@@ -125,7 +125,7 @@ export default function ItemDetailScreen({route, navigation}) {
       <View style={styles.options}>
         <Button
           label="Eliminar"
-          backgroundColor={Colors.red}
+          backgroundColor={colors.red}
           onPressIn={fireAlert}
         />
         <Button label="Editar" onPress={goToEdit} />

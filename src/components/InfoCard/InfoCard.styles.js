@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {Colors} from '../../styles/Colors';
+import {colors} from '../../styles/globalStyles';
 
 export const styles = StyleSheet.create({
   container: {
@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#fff',
     borderRadius: 15,
-    shadowColor: Colors.shadowColor,
+    shadowColor: colors.shadowColor,
     shadowOffset: {
       width: 0,
       height: 4,
@@ -20,6 +20,6 @@ export const styles = StyleSheet.create({
   text: {
     fontFamily: 'Roboto-Regular',
     fontSize: 12,
-    color: Colors.blackGray,
+    color: colors.blackGray,
   },
 });

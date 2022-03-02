@@ -18,9 +18,9 @@ import {deleteFileFromURL} from '../../services/cloudStorage/deleteFileFromURL';
 
 import ItemForm from '../../components/Form/ItemForm';
 import ActivityIndicator from '../../components/ActivityIndicator/ActivityIndicator';
-import BottomOptions from '../../components/BottomOptions';
-import SelectImage from '../../components/SelectImage';
-import BottomSheet from '../../components/BottomSheet';
+import BottomOptions from '../../components/BottomOptions/BottomOptions';
+import SelectImage from '../../components/SelectImage/SelectImage';
+import BottomSheet from '../../components/BottomSheet/BottomSheet';
 
 export default function EditItemScreen({route, navigation}) {
   const {id, code, name, imageURL, quantity, cost, date, description} =

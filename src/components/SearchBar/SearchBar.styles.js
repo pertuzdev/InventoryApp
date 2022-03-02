@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {Colors} from '../../styles/Colors';
+import {colors} from '../../styles/globalStyles';
 
 export const styles = StyleSheet.create({
   txtError: {
@@ -28,7 +28,7 @@ export const styles = StyleSheet.create({
     width: 18,
   },
   searchContainer: {
-    backgroundColor: Colors.lightGray,
+    backgroundColor: colors.lightGray,
     width: '100%',
     height: 40,
     flexDirection: 'row',

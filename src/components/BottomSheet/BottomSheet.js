@@ -4,7 +4,7 @@ import {Image, Pressable, Text, View} from 'react-native';
 import RBSheet from 'react-native-raw-bottom-sheet';
 
 import {styles} from './BottomSheet.styles';
-import {Colors} from '../../styles/Colors';
+import {colors} from '../../styles/globalStyles';
 
 export default function BottomSheet({
   refRBSheet,
@@ -33,24 +33,24 @@ export default function BottomSheet({
         <View style={styles.sheetWrapper}>
           <Pressable
             style={styles.sheetBtn}
-            android_ripple={{color: Colors.mediumGray}}
+            android_ripple={{color: colors.mediumGray}}
             onPress={takePhoto}>
             <View style={styles.sheetBtnWrapp}>
               <Image
                 style={styles.sheetOptIcon}
-                source={require('../assets/icons/ic_camera.png')}
+                source={require('../../assets/icons/ic_camera.png')}
               />
             </View>
             <Text style={styles.sheetIconTxt}>Cámara</Text>
           </Pressable>
           <Pressable
             style={styles.sheetBtn}
-            android_ripple={{color: Colors.mediumGray}}
+            android_ripple={{color: colors.mediumGray}}
             onPress={chosePhotoFromGallery}>
             <View style={styles.sheetBtnWrapp}>
               <Image
                 style={styles.sheetOptIcon}
-                source={require('../assets/icons/ic_gallery.png')}
+                source={require('../../assets/icons/ic_gallery.png')}
               />
             </View>
             <Text style={styles.sheetIconTxt}>Galería</Text>
