@@ -16,6 +16,7 @@ export default function InputLabeled({
   defaultValue = '',
   errors,
   keyboardType,
+  ...rest
 }) {
   return (
     <View>
@@ -32,6 +33,7 @@ export default function InputLabeled({
               placeholder={placeholder}
               errors={errors}
               keyboardType={keyboardType}
+              {...rest}
             />
           ) : (
             <TextInput
@@ -63,7 +65,7 @@ const styles = StyleSheet.create({
     color: Colors.darkGray,
   },
   input: {
-    backgroundColor: 'white',
+    backgroundColor: '#fff',
     borderColor: Colors.darkGray,
     borderWidth: 1,
     height: 40,

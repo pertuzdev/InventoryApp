@@ -16,29 +16,52 @@ import {
   GoogleSignin,
   GoogleSigninButton,
 } from '@react-native-google-signin/google-signin';
+import {useForm} from 'react-hook-form';
+import AuthForm from '../components/form/AuthForm';
 
 const LoginScreen = ({navigation}) => {
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  const {
+    handleSubmit,
+    control,
+    formState: {errors},
+  } = useForm({
+    defaultValues: {
+      email: '',
+      password: '',
+    },
+  });
 
-  const {user, setUser, googleLogin, login} = useContext(AuthContext);
+  const {user, setUser, isPasswordWrong, googleLogin, login} =
+    useContext(AuthContext);
 
   const showToast = (message = '') => {
-    ToastAndroid.show(message, ToastAndroid.SHORT);
+    ToastAndroid.show(message, ToastAndroid.LONG);
   };
+
+  const handleSave = ({email, password}) => login(email, password);
 
   useEffect(() => {
     const revokeUser = async () => {
       await GoogleSignin.revokeAccess();
     };
 
-    if (user?.email !== 'antonio.pertuz01@gmail.com' && user !== null) {
+    if (
+      user?.email !== 'antonio.pertuz01@gmail.com' &&
+      user?.email !== 'antonio.pertuz99@gmail.com' &&
+      user?.email !== 'enriquecanales1996@gmail.com' &&
+      user?.email !== 'variedadesalex02@gmail.com' &&
+      user !== null
+    ) {
       setUser(null);
       revokeUser();
 
       showToast('Usuario inválido');
     }
-  }, [user, setUser]);
+
+    if (isPasswordWrong) {
+      showToast('Contraseña incorrecta');
+    }
+  }, [user, setUser, control, isPasswordWrong]);
 
   return (
     <ScrollView>
@@ -49,33 +72,11 @@ const LoginScreen = ({navigation}) => {
         />
       </View>
 
-      <View style={styles.inputContainer}>
-        <TextInput
-          value={email}
-          onChangeText={userEmail => setEmail(userEmail)}
-          style={styles.input}
-          numberOfLines={1}
-          placeholder={'Email'}
-          placeholderTextColor="#666"
-          keyboardType="email-address"
-          autoCapitalize="none"
-          autoCorrect={false}
-        />
-      </View>
+      <AuthForm control={control} errors={errors} />
 
-      <View style={styles.inputContainer}>
-        <TextInput
-          value={password}
-          onChangeText={userPassword => setPassword(userPassword)}
-          style={styles.input}
-          numberOfLines={1}
-          placeholder={'Password'}
-          iconType="lock"
-          secureTextEntry={true}
-        />
+      <View style={styles.btnWrapper}>
+        <Button label="Ingresar" onPress={handleSubmit(handleSave)} />
       </View>
-
-      <Button label="Ingresar" onPress={() => login(email, password)} />
 
       <View style={styles.btnWp}>
         <GoogleSigninButton
@@ -98,34 +99,15 @@ const styles = StyleSheet.create({
     padding: 20,
     paddingTop: 50,
   },
-  inputContainer: {
-    marginTop: 5,
-    marginBottom: 10,
-    width: '100%',
-    borderColor: '#ccc',
-    borderRadius: 3,
-    borderWidth: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '#fff',
-  },
-  input: {
-    padding: 10,
-    flex: 1,
-    fontSize: 16,
-    fontFamily: 'Lato-Regular',
-    color: '#333',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
+
   logWp: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'center',
   },
   logo: {
-    height: 300,
-    width: 300,
+    height: 250,
+    width: 250,
     resizeMode: 'contain',
   },
   btnWp: {
@@ -150,5 +132,10 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     color: '#2e64e5',
     fontFamily: 'Lato-Regular',
+  },
+  btnWrapper: {
+    display: 'flex',
+    alignItems: 'center',
+    marginVertical: 20,
   },
 });

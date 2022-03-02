@@ -4,6 +4,7 @@ import {StyleSheet, View, Text, Dimensions} from 'react-native';
 import Loader from './Loader';
 
 export default function ActivityIndicator({children, loading}) {
+  console.log(loading, 'the weeknd');
   return (
     <View style={styles.container}>
       <Loader loading={loading} />

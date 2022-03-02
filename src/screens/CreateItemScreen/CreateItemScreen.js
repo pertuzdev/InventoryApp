@@ -14,7 +14,7 @@ import useImagePick from '../../hooks/useImagePick';
 
 import {alertOnGoBack} from '../../helpers/alertOnGoBack';
 
-import Form from '../../components/form/Form';
+import ItemForm from '../../components/form/ItemForm';
 import ActivityIndicator from '../../components/ActivityIndicator';
 import BottomOptions from '../../components/BottomOptions';
 import BottomSheet from '../../components/BottomSheet';
@@ -26,6 +26,8 @@ export default function CreateItemScreen({navigation}) {
   const refRBSheet = useRef();
 
   const [loading, setLoading] = useState(false);
+
+  console.log(loading, 'lonely');
 
   const {
     handleSubmit,
@@ -77,6 +79,7 @@ export default function CreateItemScreen({navigation}) {
 
     addItem(data).then(() => {
       cleanPhotos();
+      console.log('gatitos');
       setLoading(false);
       navigation.navigate('Home', {message: 'Producto creado'});
     });
@@ -100,7 +103,11 @@ export default function CreateItemScreen({navigation}) {
       <View style={styles.container}>
         <ScrollView style={styles.scrollCont}>
           <SelectImage openSheetBottom={openSheetBottom} image={image} />
-          <Form control={control} errors={errors} dateCaptured={dateCaptured} />
+          <ItemForm
+            control={control}
+            errors={errors}
+            dateCaptured={dateCaptured}
+          />
         </ScrollView>
         <BottomOptions
           handleCancelPress={handleCancelPress}

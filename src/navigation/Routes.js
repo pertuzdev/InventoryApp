@@ -28,7 +28,9 @@ const Routes = () => {
   return (
     <NavigationContainer>
       {user?.email === 'antonio.pertuz01@gmail.com' ||
-      user?.email === 'antonio.pertuz99@gmail.com' ? (
+      user?.email === 'antonio.pertuz99@gmail.com' ||
+      user?.email === 'enriquecanales1996@gmail.com' ||
+      user?.email === 'variedadesalex02@gmail.com' ? (
         <HomeStack />
       ) : (
         <AuthStack />

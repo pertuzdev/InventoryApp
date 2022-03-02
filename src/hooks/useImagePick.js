@@ -11,7 +11,7 @@ export default function useImagePick(actionAfterImage) {
         console.log('removed all images from pictures directory');
       })
       .catch(e => {
-        alert(e);
+        console.log(e);
       });
   };
 

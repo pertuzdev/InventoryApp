@@ -8,6 +8,8 @@ export const AuthContext = createContext();
 
 export const AuthProvider = ({children}) => {
   const [user, setUser] = useState(null);
+  const [isUserInDB, setIsUserInDB] = useState(false);
+  const [isPasswordWrong, setIsPasswordWrong] = useState(false);
 
   //console.log(user, 'oli');
 
@@ -16,11 +18,19 @@ export const AuthProvider = ({children}) => {
       value={{
         user,
         setUser,
+        isPasswordWrong,
+        setIsPasswordWrong,
         login: async (email, password) => {
           try {
-            await auth().signInWithEmailAndPassword(email, password);
+            await auth()
+              .signInWithEmailAndPassword(email, password)
+              .then(() => setIsPasswordWrong(false));
           } catch (e) {
-            console.log(e, 'LoginError');
+            console.log({e}, 'LoginError');
+
+            if (e.code === 'auth/user-not-found') setUser(email);
+
+            if (e.code === 'auth/wrong-password') setIsPasswordWrong(true);
           }
         },
         googleLogin: async () => {

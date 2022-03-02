@@ -14,7 +14,7 @@ import useImagePick from '../../hooks/useImagePick';
 
 import {alertOnGoBack} from '../../helpers/alertOnGoBack';
 
-import Form from '../../components/form/Form';
+import ItemForm from '../../components/form/ItemForm';
 import ActivityIndicator from '../../components/ActivityIndicator';
 import BottomOptions from '../../components/BottomOptions';
 import SelectImage from '../../components/SelectImage';
@@ -133,7 +133,7 @@ export default function EditItemScreen({route, navigation}) {
             openSheetBottom={openSheetBottom}
             image={image || imageURL}
           />
-          <Form
+          <ItemForm
             control={control}
             errors={errors}
             dateCaptured={date}
