@@ -1,6 +1,7 @@
 import React, {createContext, useState} from 'react';
 
 import auth from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
 
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
 
@@ -8,8 +9,6 @@ export const AuthContext = createContext();
 
 export const AuthProvider = ({children}) => {
   const [user, setUser] = useState(null);
-  const [isUserInDB, setIsUserInDB] = useState(false);
-  const [isPasswordWrong, setIsPasswordWrong] = useState(false);
 
   //console.log(user, 'oli');
 
@@ -18,19 +17,11 @@ export const AuthProvider = ({children}) => {
       value={{
         user,
         setUser,
-        isPasswordWrong,
-        setIsPasswordWrong,
         login: async (email, password) => {
           try {
-            await auth()
-              .signInWithEmailAndPassword(email, password)
-              .then(() => setIsPasswordWrong(false));
+            await auth().signInWithEmailAndPassword(email, password);
           } catch (e) {
-            console.log({e}, 'LoginError');
-
-            if (e.code === 'auth/user-not-found') setUser(email);
-
-            if (e.code === 'auth/wrong-password') setIsPasswordWrong(true);
+            console.log(e);
           }
         },
         googleLogin: async () => {
@@ -49,7 +40,7 @@ export const AuthProvider = ({children}) => {
                 console.log('Something went wrong with sign up: ', error);
               });
           } catch (error) {
-            console.log({error}, 'errorcat');
+            console.log({error});
           }
         },
         logout: async () => {
@@ -58,6 +49,36 @@ export const AuthProvider = ({children}) => {
             await GoogleSignin.revokeAccess();
           } catch (e) {
             console.log(e, 'Logout error');
+          }
+        },
+        register: async (email, password) => {
+          try {
+            await auth()
+              .createUserWithEmailAndPassword(email, password)
+              .then(() => {
+                firestore()
+                  .collection('users')
+                  .doc(auth().currentUser.uid)
+                  .set({
+                    firstName: '',
+                    lastName: '',
+                    email,
+                    createdAt: firestore.Timestamp.fromDate(new Date()),
+                    userImg: null,
+                  })
+                  .catch(error => {
+                    console.log(
+                      'Error when trying to add user to firestore: ',
+                      error,
+                    );
+                  });
+              })
+
+              .catch(error => {
+                console.log('Error to sign up: ', error);
+              });
+          } catch (error) {
+            console.log(error);
           }
         },
       }}>

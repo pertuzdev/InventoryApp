@@ -8,8 +8,6 @@ import {GoogleSignin} from '@react-native-google-signin/google-signin';
 const Stack = createStackNavigator();
 
 const AuthStack = () => {
-  console.log('patricio estrella');
-
   useEffect(() => {
     GoogleSignin.configure({
       webClientId:
