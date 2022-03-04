@@ -12,7 +12,7 @@ import {uploadFile} from '../../services/cloudStorage/uploadFile';
 import {useAlertOnGoBack} from '../../hooks/useAlertOnGoBack';
 import useImagePick from '../../hooks/useImagePick';
 
-import {alertOnGoBack} from '../../helpers/alertOnGoBack';
+import {alertOnGoBack} from '../../helpers/alerts/alertOnGoBack';
 
 import {deleteFileFromURL} from '../../services/cloudStorage/deleteFileFromURL';
 

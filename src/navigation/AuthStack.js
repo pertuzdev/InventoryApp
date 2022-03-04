@@ -1,9 +1,10 @@
 import React, {useEffect} from 'react';
 
-import {createStackNavigator} from '@react-navigation/stack';
-import LoginScreen from '../screens/LoginScreen/LoginScreen';
-
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
+import {createStackNavigator} from '@react-navigation/stack';
+
+import LoginScreen from '../screens/LoginScreen/LoginScreen';
+import SignupScreen from '../screens/SignupScreen/SignupScreen';
 
 const Stack = createStackNavigator();
 
@@ -25,6 +26,7 @@ const AuthStack = () => {
         component={LoginScreen}
         options={{header: () => null}}
       />
+      <Stack.Screen name="Signup" component={SignupScreen} />
     </Stack.Navigator>
   );
 };

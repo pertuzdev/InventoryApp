@@ -1,5 +1,5 @@
 import React, {useRef, useState} from 'react';
-import {Keyboard, StyleSheet, View} from 'react-native';
+import {Keyboard, View} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 
 import {useForm} from 'react-hook-form';
@@ -14,7 +14,7 @@ import {uploadFile} from '../../services/cloudStorage/uploadFile';
 import {useAlertOnGoBack} from '../../hooks/useAlertOnGoBack';
 import useImagePick from '../../hooks/useImagePick';
 
-import {alertOnGoBack} from '../../helpers/alertOnGoBack';
+import {alertOnGoBack} from '../../helpers/alerts/alertOnGoBack';
 
 import ItemForm from '../../components/Form/ItemForm';
 import ActivityIndicator from '../../components/ActivityIndicator/ActivityIndicator';

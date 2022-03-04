@@ -1,13 +1,12 @@
-import React from 'react';
-import {View, StyleSheet} from 'react-native';
-import checkItem from '../../services/firestore/checkItem';
-import CostInput from './CostInput';
-import DatePickerInput from './DatePickerInput';
+import React, {useContext} from 'react';
+import {View, StyleSheet, Alert} from 'react-native';
+import {AuthContext} from '../../navigation/AuthProvider';
 
 import InputLabeled from './InputLabeled';
-import QuantityInput from './QuantityInput';
 
-export default function AuthForm({control, errors}) {
+export default function LoginForm({control, errors}) {
+  const {userRequest, setUserRequest} = useContext(AuthContext);
+
   return (
     <View style={styles.container}>
       <InputLabeled
@@ -50,6 +49,5 @@ const styles = StyleSheet.create({
   container: {
     paddingTop: 16,
     paddingHorizontal: 16,
-    paddingBottom: 16,
   },
 });

@@ -17,8 +17,6 @@ export default function CardItem({
   date = {},
   description = '',
 }) {
-  console.log(imageURL, 'imagen');
-
   const handlePress = () => {
     navigation.navigate('Detail', {
       id,

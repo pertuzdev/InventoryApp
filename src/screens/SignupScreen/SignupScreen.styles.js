@@ -7,17 +7,6 @@ export const styles = StyleSheet.create({
     padding: 20,
     paddingTop: 50,
   },
-
-  logWp: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center',
-  },
-  logo: {
-    height: 150,
-    width: 150,
-    resizeMode: 'contain',
-  },
   btnWp: {
     display: 'flex',
     flexDirection: 'row',
@@ -48,8 +37,18 @@ export const styles = StyleSheet.create({
   btnWrapper: {
     display: 'flex',
     alignItems: 'center',
-    marginVertical: 16,
     marginHorizontal: 16,
-    marginBottom: 60,
+  },
+  textPrivate: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    marginVertical: 30,
+    justifyContent: 'center',
+  },
+  color_textPrivate: {
+    fontSize: 13,
+    fontWeight: '400',
+    fontFamily: 'Lato-Regular',
+    color: 'grey',
   },
 });

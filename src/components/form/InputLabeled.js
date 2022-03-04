@@ -19,7 +19,7 @@ export default function InputLabeled({
   ...rest
 }) {
   return (
-    <View>
+    <View style={styles.inputContainer}>
       <Text style={styles.label}>{label}</Text>
       <Controller
         control={control}
@@ -57,11 +57,10 @@ export default function InputLabeled({
 
 const styles = StyleSheet.create({
   label: {
-    margin: 20,
-    marginBottom: 16,
-    marginLeft: 8,
+    marginBottom: 8,
+    marginLeft: 10,
     fontFamily: 'Roboto-Medium',
-    fontSize: 16,
+    fontSize: 14,
     color: colors.darkGray,
   },
   input: {
@@ -72,6 +71,9 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 16,
     borderRadius: 15,
+  },
+  inputContainer: {
+    marginBottom: 25,
   },
   inputArea: {
     backgroundColor: 'white',

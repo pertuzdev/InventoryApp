@@ -1,7 +1,7 @@
 import React, {useCallback, useEffect, useLayoutEffect, useState} from 'react';
 import {BackHandler} from 'react-native';
 
-import {alertOnGoBack} from '../helpers/alertOnGoBack';
+import {alertOnGoBack} from '../helpers/alerts/alertOnGoBack';
 import BackButton from '../components/Button/BackButton';
 
 export function useAlertOnGoBack(navigation, hasUnsavedChanges) {

@@ -7,11 +7,13 @@ import AuthStack from './AuthStack';
 import HomeStack from './HomeStack';
 
 const Routes = () => {
-  const {user, setUser} = useContext(AuthContext);
+  const {userRequest, setUserRequest} = useContext(AuthContext);
   const [initializing, setInitializing] = useState(true);
 
+  console.log(userRequest, 'user');
+
   const onAuthStateChanged = authUser => {
-    setUser(authUser);
+    setUserRequest(prev => ({...prev, user: authUser}));
     if (initializing) setInitializing(false);
   };
 
@@ -24,7 +26,7 @@ const Routes = () => {
 
   return (
     <NavigationContainer>
-      {user ? <HomeStack /> : <AuthStack />}
+      {userRequest.user ? <HomeStack /> : <AuthStack />}
     </NavigationContainer>
   );
 };

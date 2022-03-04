@@ -1,18 +1,19 @@
-import React, {useContext, useEffect} from 'react';
-import {View, ScrollView, Image, ToastAndroid} from 'react-native';
+import React, {useContext} from 'react';
+import {View, ScrollView, Image, TouchableOpacity, Text} from 'react-native';
+
+import {useForm} from 'react-hook-form';
+
+import {GoogleSigninButton} from '@react-native-google-signin/google-signin';
 
 import {styles} from './LoginScreen.styles';
 
 import {AuthContext} from '../../navigation/AuthProvider';
 
-import Button from '../../components/Button/Button';
+import {alertOnFirebaseAuth} from '../../helpers/alerts/alertOnFirebaseAuth/alertOnFirebaseAuth';
 
-import {
-  GoogleSignin,
-  GoogleSigninButton,
-} from '@react-native-google-signin/google-signin';
-import {useForm} from 'react-hook-form';
-import AuthForm from '../../components/Form/AuthForm';
+import ActivityIndicator from '../../components/ActivityIndicator/ActivityIndicator';
+import Button from '../../components/Button/Button';
+import LoginForm from '../../components/Form/LoginForm';
 
 const LoginScreen = ({navigation}) => {
   const {
@@ -26,34 +27,61 @@ const LoginScreen = ({navigation}) => {
     },
   });
 
-  const {googleLogin, login} = useContext(AuthContext);
+  const {googleLogin, login, userRequest, setUserRequest} =
+    useContext(AuthContext);
 
   const handleSave = ({email, password}) => login(email, password);
 
+  console.log(userRequest, 'three');
+
+  if (userRequest.userStatusError) {
+    const {userInfo} = userRequest.userStatusError;
+    alertOnFirebaseAuth({
+      action: () => {
+        setUserRequest(prev => ({...prev, userStatusError: null}));
+      },
+      alertTitle: userInfo.code,
+      alertBody: userInfo.message,
+    });
+  }
+
   return (
-    <ScrollView>
-      <View style={styles.logWp}>
-        <Image
-          source={require('../../assets/images/logo.png')}
-          style={styles.logo}
-        />
-      </View>
+    <ActivityIndicator loading={userRequest.loading}>
+      <ScrollView>
+        <View style={styles.logWp}>
+          <Image
+            source={require('../../assets/images/logo.png')}
+            style={styles.logo}
+          />
+        </View>
 
-      <AuthForm control={control} errors={errors} />
+        <LoginForm control={control} errors={errors} />
 
-      <View style={styles.btnWrapper}>
-        <Button label="Ingresar" onPress={handleSubmit(handleSave)} />
-      </View>
+        <View style={styles.btnWrapper}>
+          <Button
+            label="Ingresar"
+            size="lg"
+            onPress={handleSubmit(handleSave)}
+          />
+        </View>
 
-      <View style={styles.btnWp}>
-        <GoogleSigninButton
-          style={{width: 192, height: 48}}
-          size={GoogleSigninButton.Size.Wide}
-          color={GoogleSigninButton.Color.Light}
-          onPress={() => googleLogin()}
-        />
-      </View>
-    </ScrollView>
+        <View style={styles.btnWp}>
+          <GoogleSigninButton
+            style={{width: 250, height: 53}}
+            size={GoogleSigninButton.Size.Wide}
+            color={GoogleSigninButton.Color.Light}
+            onPress={() => googleLogin()}
+          />
+        </View>
+        <TouchableOpacity
+          style={styles.forgotButton}
+          onPress={() => navigation.navigate('Signup')}>
+          <Text style={styles.navButtonText}>
+            Don't have an acount? Create here
+          </Text>
+        </TouchableOpacity>
+      </ScrollView>
+    </ActivityIndicator>
   );
 };
 
