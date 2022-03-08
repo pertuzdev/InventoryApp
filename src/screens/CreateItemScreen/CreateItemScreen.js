@@ -29,8 +29,6 @@ export default function CreateItemScreen({navigation}) {
 
   const [loading, setLoading] = useState(false);
 
-  console.log(loading, 'lonely');
-
   const {
     handleSubmit,
     control,
@@ -59,7 +57,7 @@ export default function CreateItemScreen({navigation}) {
 
   const buildPathRef = ({itemName}) => {
     const nameWithoutSpaces = itemName.replace(/\s/g, '');
-    return `/images/InventoryApp_Image_${nameWithoutSpaces}_${Date.parse(
+    return `/images_products/InventoryApp_Image_${nameWithoutSpaces}_${Date.parse(
       new Date(),
     )}.jpg`;
   };
@@ -81,7 +79,6 @@ export default function CreateItemScreen({navigation}) {
 
     addItem(data).then(() => {
       cleanPhotos();
-      console.log('gatitos');
       setLoading(false);
       navigation.navigate('Home', {message: 'Producto creado'});
     });

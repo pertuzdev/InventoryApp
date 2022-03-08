@@ -2,10 +2,10 @@ import firestore from '@react-native-firebase/firestore';
 
 export const addItem = async item => {
   return firestore()
-    .collection('Items')
+    .collection('Products')
     .add(item)
     .then(() => {
-      console.log('Item added!');
+      console.log('Product added!');
     })
     .catch(e => {
       console.log(e);

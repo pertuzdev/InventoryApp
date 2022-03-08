@@ -2,10 +2,10 @@ import firestore from '@react-native-firebase/firestore';
 
 export const deleteItem = id => {
   firestore()
-    .collection('Items')
+    .collection('Products')
     .doc(id)
     .delete()
     .then(() => {
-      console.log('Item deleted!');
+      console.log('Product deleted!');
     });
 };

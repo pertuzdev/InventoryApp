@@ -1,5 +1,5 @@
 import React, {useRef, useState} from 'react';
-import {Keyboard, StyleSheet, View} from 'react-native';
+import {Keyboard, View} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 
 import {useForm} from 'react-hook-form';
@@ -15,6 +15,8 @@ import useImagePick from '../../hooks/useImagePick';
 import {alertOnGoBack} from '../../helpers/alerts/alertOnGoBack';
 
 import {deleteFileFromURL} from '../../services/cloudStorage/deleteFileFromURL';
+
+import {styles} from './EditItemScreen.styles';
 
 import ItemForm from '../../components/Form/ItemForm';
 import ActivityIndicator from '../../components/ActivityIndicator/ActivityIndicator';
@@ -57,7 +59,7 @@ export default function EditItemScreen({route, navigation}) {
 
   const buildPathRef = ({itemName}) => {
     const nameWithoutSpaces = itemName.replace(/\s/g, '');
-    return `/images/InventoryApp_Image_${nameWithoutSpaces}_${Date.parse(
+    return `/images_products/InventoryApp_Image_${nameWithoutSpaces}_${Date.parse(
       new Date(),
     )}.jpg`;
   };
