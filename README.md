@@ -3,7 +3,7 @@
 </h1>
 
 <h3 align="center"> 
-  Available here: 
+  Android version available to download here: https://drive.google.com/file/d/1_xDnM7wikutIyosngo7sIoF48JWfbHgB/view?usp=sharing
 </h3>
 
 Inventory App developed in React Native with authentication system (register and Google Sign In), real time NoSQL database, search engine, 
