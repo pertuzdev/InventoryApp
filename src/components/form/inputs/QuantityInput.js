@@ -7,9 +7,13 @@ import {
   TextInput,
   View,
 } from 'react-native';
-import {useForm, Controller} from 'react-hook-form';
-import ErrorMessage from './ErrorMessage';
-import {colors} from '../../styles/globalStyles';
+
+import {Controller} from 'react-hook-form';
+
+import {colors} from '../../../styles/globalStyles';
+import {commonInputStyles} from './commonInputStyles';
+
+import ErrorMessage from '../ErrorMessage';
 
 export default function QuantityInput({
   label = '',
@@ -21,7 +25,6 @@ export default function QuantityInput({
   keyboardType = 'numeric',
 }) {
   const [qty, setQty] = useState(1);
-  //console.log(qty, 'qty');
 
   const handleAdd = (value, onChange) => {
     onChange((Number(value) + 1).toString());
@@ -45,14 +48,13 @@ export default function QuantityInput({
 
   return (
     <View>
-      <Text style={styles.label}>{label}</Text>
+      <Text style={commonInputStyles.label}>{label}</Text>
       <View style={styles.wrapper}>
         <Controller
           control={control}
           name={name}
           rules={rules}
           render={({field: {onChange, onBlur, value}}) => {
-            console.log(value, 'Itaewon');
             return (
               <>
                 <Pressable
@@ -61,7 +63,9 @@ export default function QuantityInput({
                     color: colors.gray,
                   }}
                   onPress={() => handleSubtract(value, onChange)}>
-                  <Image source={require('../../assets/icons/ic_minus.png')} />
+                  <Image
+                    source={require('../../../assets/icons/ic_minus.png')}
+                  />
                 </Pressable>
                 {/* <Text style={styles.input}>{value}</Text> */}
                 <TextInput
@@ -78,7 +82,9 @@ export default function QuantityInput({
                     color: colors.gray,
                   }}
                   onPress={() => handleAdd(value, onChange)}>
-                  <Image source={require('../../assets/icons/ic_plus.png')} />
+                  <Image
+                    source={require('../../../assets/icons/ic_plus.png')}
+                  />
                 </Pressable>
               </>
             );
@@ -95,14 +101,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  label: {
-    margin: 20,
-    marginBottom: 16,
-    marginLeft: 8,
-    fontFamily: 'Roboto-Medium',
-    fontSize: 16,
-    color: colors.darkGray,
   },
   input: {
     textAlign: 'center',

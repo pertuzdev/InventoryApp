@@ -1,11 +1,12 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
-import checkItem from '../../services/firestore/checkItem';
-import CostInput from './CostInput';
-import DatePickerInput from './DatePickerInput';
 
-import InputLabeled from './InputLabeled';
-import QuantityInput from './QuantityInput';
+import checkItem from '../../services/firestore/checkItem';
+
+import CostInput from './inputs/CostInput';
+import DatePickerInput from './inputs/DatePickerInput';
+import InputLabeled from './inputs/InputLabeled';
+import QuantityInput from './inputs/QuantityInput';
 
 export default function ItemForm({control, errors, dateCaptured, itemID}) {
   //console.log('errors', errors);

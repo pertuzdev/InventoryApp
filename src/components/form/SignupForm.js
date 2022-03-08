@@ -1,7 +1,7 @@
 import React, {useRef} from 'react';
 import {View, StyleSheet} from 'react-native';
 
-import InputLabeled from './InputLabeled';
+import InputLabeled from './inputs/InputLabeled';
 
 export default function SignupForm({control, errors, watch}) {
   const password = useRef({});

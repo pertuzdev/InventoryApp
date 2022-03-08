@@ -1,17 +1,15 @@
 import React, {useEffect, useState} from 'react';
 import {View, Platform, Text, StyleSheet, Image, Pressable} from 'react-native';
-import DateTimePicker from '@react-native-community/datetimepicker';
 
-import {
-  formatDate,
-  dateToTimestamp,
-  timestampToDate,
-} from '../../helpers/dates';
+import DateTimePicker from '@react-native-community/datetimepicker';
 import {Controller} from 'react-hook-form';
-import {TextInput} from 'react-native-gesture-handler';
-import ErrorMessage from './ErrorMessage';
-import {colors} from '../../styles/globalStyles';
-import useDate from '../../hooks/useDate';
+
+import {formatDate} from '../../../helpers/dates';
+
+import {colors} from '../../../styles/globalStyles';
+import {commonInputStyles} from './commonInputStyles';
+
+import ErrorMessage from '../ErrorMessage';
 
 export default function DatePickerPickerInput({control, errors, dateCaptured}) {
   const [date, setDate] = useState(dateCaptured);
@@ -43,11 +41,15 @@ export default function DatePickerPickerInput({control, errors, dateCaptured}) {
   return (
     <View>
       <View>
-        <Text style={styles.label}>Fecha de ingreso</Text>
-        <Pressable onPress={handlePress} style={styles.wrapper}>
-          <Text style={styles.text}>{dateToShow}</Text>
-          <Image source={require('../../assets/icons/ic_arrow_right.png')} />
-        </Pressable>
+        <View style={commonInputStyles.inputContainer}>
+          <Text style={commonInputStyles.label}>Fecha de ingreso</Text>
+          <Pressable onPress={handlePress} style={styles.wrapper}>
+            <Text style={styles.text}>{dateToShow}</Text>
+            <Image
+              source={require('../../../assets/icons/ic_arrow_right.png')}
+            />
+          </Pressable>
+        </View>
         <Controller
           control={control}
           defaultValue={date}
@@ -82,14 +84,6 @@ export default function DatePickerPickerInput({control, errors, dateCaptured}) {
 }
 
 const styles = StyleSheet.create({
-  label: {
-    margin: 20,
-    marginBottom: 16,
-    marginLeft: 8,
-    fontFamily: 'Roboto-Medium',
-    fontSize: 16,
-    color: colors.darkGray,
-  },
   wrapper: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -105,11 +99,5 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     height: 40,
     paddingVertical: 10,
-  },
-  iconCont: {
-    width: '10%',
-    height: '100%',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 });

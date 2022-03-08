@@ -1,12 +1,9 @@
-import React, {useContext} from 'react';
-import {View, StyleSheet, Alert} from 'react-native';
-import {AuthContext} from '../../navigation/AuthProvider';
+import React from 'react';
+import {View, StyleSheet} from 'react-native';
 
-import InputLabeled from './InputLabeled';
+import InputLabeled from './inputs/InputLabeled';
 
 export default function LoginForm({control, errors}) {
-  const {userRequest, setUserRequest} = useContext(AuthContext);
-
   return (
     <View style={styles.container}>
       <InputLabeled

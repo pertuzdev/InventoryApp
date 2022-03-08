@@ -1,10 +1,11 @@
 import React from 'react';
-import {Text, View, StyleSheet, TextInput, Pressable} from 'react-native';
+import {Text, View, TextInput} from 'react-native';
 
-import {useForm, Controller} from 'react-hook-form';
+import {Controller} from 'react-hook-form';
 
-import ErrorMessage from './ErrorMessage';
-import {colors} from '../../styles/globalStyles';
+import {commonInputStyles} from './commonInputStyles';
+
+import ErrorMessage from '../ErrorMessage';
 
 export default function InputLabeled({
   inputArea = false,
@@ -19,14 +20,14 @@ export default function InputLabeled({
   ...rest
 }) {
   return (
-    <View style={styles.inputContainer}>
-      <Text style={styles.label}>{label}</Text>
+    <View style={commonInputStyles.inputContainer}>
+      <Text style={commonInputStyles.label}>{label}</Text>
       <Controller
         control={control}
         render={({field: {onChange, onBlur, value}}) => {
           return !inputArea ? (
             <TextInput
-              style={styles.input}
+              style={commonInputStyles.input}
               onBlur={onBlur}
               onChangeText={onChange}
               value={value || defaultValue}
@@ -39,7 +40,7 @@ export default function InputLabeled({
             <TextInput
               multiline
               numberOfLines={5}
-              style={styles.inputArea}
+              style={commonInputStyles.inputArea}
               onBlur={onBlur}
               onChangeText={onChange}
               value={value}
@@ -54,33 +55,3 @@ export default function InputLabeled({
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  label: {
-    marginBottom: 8,
-    marginLeft: 10,
-    fontFamily: 'Roboto-Medium',
-    fontSize: 14,
-    color: colors.darkGray,
-  },
-  input: {
-    backgroundColor: '#fff',
-    borderColor: colors.darkGray,
-    borderWidth: 1,
-    height: 40,
-    paddingVertical: 10,
-    paddingHorizontal: 16,
-    borderRadius: 15,
-  },
-  inputContainer: {
-    marginBottom: 25,
-  },
-  inputArea: {
-    backgroundColor: 'white',
-    borderColor: colors.darkGray,
-    textAlignVertical: 'top',
-    borderWidth: 1,
-    padding: 10,
-    borderRadius: 15,
-  },
-});
