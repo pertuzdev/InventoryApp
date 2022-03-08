@@ -6,7 +6,6 @@ import BackButton from '../components/Button/BackButton';
 
 export function useAlertOnGoBack(navigation, hasUnsavedChanges) {
   //alertOnGoBack(navigation, hasUnsavedChanges);
-  //console.log('oli');
 
   const fireAlert = useCallback(
     () => alertOnGoBack(navigation, hasUnsavedChanges),

@@ -4,14 +4,19 @@ export const styles = StyleSheet.create({
   container: {},
   wrapper: {
     flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  profileWrapper: {
+    flexDirection: 'row',
     alignItems: 'center',
     // backgroundColor: 'red',
   },
   imgCont: {
-    width: 80,
+    width: 60,
     height: 50,
     justifyContent: 'center',
-    // backgroundColor: 'red',
+    //backgroundColor: 'red',
   },
   img: {
     //width: 200,
@@ -22,7 +27,7 @@ export const styles = StyleSheet.create({
     // backgroundColor: 'blue',
   },
   txtWrapper: {
-    marginLeft: 20,
+    marginLeft: 8,
   },
   infoWrapper: {
     width: '100%',

@@ -18,7 +18,7 @@ export const AuthProvider = ({children}) => {
     userStatusError: null,
   });
 
-  //console.log(user, 'oli');
+  //console.log(userRequest, 'userRequest');
 
   return (
     <AuthContext.Provider

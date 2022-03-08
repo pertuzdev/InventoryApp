@@ -24,7 +24,6 @@ export default function HomeScreen({route, navigation}) {
   };
 
   const handleSearchBarPress = () => {
-    console.log('Searchbar pressed');
     navigation.navigate('Search');
   };
 

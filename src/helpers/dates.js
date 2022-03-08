@@ -58,7 +58,6 @@ export const dateToTimestamp = date => {
 
 export const formatDate = ({date}) => {
   const dateParsed = new Date(date);
-  console.log(typeof date, 'que pedo');
   const [monthWord, monthNumber, dayNumber, dayWord, year] = [
     MONTHS_SPA[dateParsed.getMonth()],
     dateParsed.getMonth(),

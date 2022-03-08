@@ -6,7 +6,6 @@ import {styles} from './SelectImage.styles';
 import {colors} from '../../styles/globalStyles';
 
 export default function SelectImage({openSheetBottom, image}) {
-  console.log(image, 'skipper');
   return (
     <View style={styles.head}>
       <Pressable

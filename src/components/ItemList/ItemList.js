@@ -7,7 +7,6 @@ import {TextStyles} from '../../styles/globalStyles';
 import CardItem from '../CardItem/CardItem';
 
 export default function ItemList({navigation, items, loading}) {
-  //console.log(items[0].id, 'rosé');
   if (loading) {
     return <Text>Cargando...</Text>;
   }

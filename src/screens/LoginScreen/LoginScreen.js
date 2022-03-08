@@ -32,7 +32,7 @@ const LoginScreen = ({navigation}) => {
 
   const handleSave = ({email, password}) => login(email, password);
 
-  console.log(userRequest, 'three');
+  console.log(userRequest, 'userRequest LoginScreen');
 
   if (userRequest.userStatusError) {
     const {userInfo} = userRequest.userStatusError;

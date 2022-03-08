@@ -16,12 +16,14 @@ export default function Header({style, onSearchBarPress, totalQty, totalCost}) {
   return (
     <View style={[styles.container, style]}>
       <View style={styles.wrapper}>
-        <View style={styles.imgCont}>
-          <Image source={src} style={styles.img} />
-        </View>
-        <View style={styles.txtWrapper}>
-          <Text style={TextStyles.title}>Variedades Alex</Text>
-          <Text style={TextStyles.cardDescription}>Perfil / Propietario</Text>
+        <View style={styles.profileWrapper}>
+          <View style={styles.imgCont}>
+            <Image source={src} style={styles.img} />
+          </View>
+          <View style={styles.txtWrapper}>
+            <Text style={TextStyles.title}>Variedades Alex</Text>
+            <Text style={TextStyles.cardDescription}>Perfil / Propietario</Text>
+          </View>
         </View>
         <View style={styles.btnContainer}>
           <Button
