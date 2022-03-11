@@ -8,7 +8,7 @@ import {TextStyles} from '../../styles/globalStyles';
 import SearchBar from '../SearchBar/SearchBar';
 import InfoCard from '../InfoCard/InfoCard';
 import Button from '../Button/Button';
-import {AuthContext} from '../../navigation/AuthProvider';
+import AuthContext from '../../context/AuthContext';
 
 export default function Header({style, onSearchBarPress, totalQty, totalCost}) {
   const src = require('../../assets/images/logo.png');

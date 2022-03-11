@@ -7,7 +7,7 @@ import {GoogleSigninButton} from '@react-native-google-signin/google-signin';
 
 import {styles} from './LoginScreen.styles';
 
-import {AuthContext} from '../../navigation/AuthProvider';
+import AuthContext from '../../context/AuthContext';
 
 import {alertOnFirebaseAuth} from '../../helpers/alerts/alertOnFirebaseAuth/alertOnFirebaseAuth';
 
