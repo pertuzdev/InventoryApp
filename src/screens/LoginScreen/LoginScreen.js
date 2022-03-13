@@ -7,13 +7,12 @@ import {GoogleSigninButton} from '@react-native-google-signin/google-signin';
 
 import {styles} from './LoginScreen.styles';
 
-import AuthContext from '../../context/AuthContext';
-
 import {alertOnFirebaseAuth} from '../../helpers/alerts/alertOnFirebaseAuth/alertOnFirebaseAuth';
 
 import ActivityIndicator from '../../components/ActivityIndicator/ActivityIndicator';
 import Button from '../../components/Button/Button';
 import LoginForm from '../../components/Form/LoginForm';
+import {useUser, useUserAuth} from '../../services/auth/useUser';
 
 const LoginScreen = ({navigation}) => {
   const {
@@ -27,26 +26,24 @@ const LoginScreen = ({navigation}) => {
     },
   });
 
-  const {googleLogin, login, userRequest, setUserRequest} =
-    useContext(AuthContext);
+  const {login, googleLogin} = useUserAuth();
+
+  const {user, loading, error, resetError} = useUser();
 
   const handleSave = ({email, password}) => login(email, password);
 
-  console.log(userRequest, 'userRequest LoginScreen');
-
-  if (userRequest.userStatusError) {
-    const {userInfo} = userRequest.userStatusError;
+  if (error) {
     alertOnFirebaseAuth({
       action: () => {
-        setUserRequest(prev => ({...prev, userStatusError: null}));
+        resetError();
       },
-      alertTitle: userInfo.code,
-      alertBody: userInfo.message,
+      alertTitle: error.code,
+      alertBody: error.message,
     });
   }
 
   return (
-    <ActivityIndicator loading={userRequest.loading}>
+    <ActivityIndicator loading={loading}>
       <ScrollView>
         <View style={styles.logWp}>
           <Image

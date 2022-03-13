@@ -1,6 +1,8 @@
 import React, {useContext} from 'react';
 import {View, Text, Image} from 'react-native';
 
+import {useUserAuth} from '../../services/auth/useUser';
+
 import {styles} from './Header.styles';
 import {colors} from '../../styles/globalStyles';
 import {TextStyles} from '../../styles/globalStyles';
@@ -8,11 +10,10 @@ import {TextStyles} from '../../styles/globalStyles';
 import SearchBar from '../SearchBar/SearchBar';
 import InfoCard from '../InfoCard/InfoCard';
 import Button from '../Button/Button';
-import AuthContext from '../../context/AuthContext';
 
 export default function Header({style, onSearchBarPress, totalQty, totalCost}) {
   const src = require('../../assets/images/logo.png');
-  const {logout} = useContext(AuthContext);
+  const {logout} = useUserAuth();
   return (
     <View style={[styles.container, style]}>
       <View style={styles.wrapper}>

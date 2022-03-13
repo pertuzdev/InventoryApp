@@ -4,7 +4,7 @@ import auth from '@react-native-firebase/auth';
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import firestore from '@react-native-firebase/firestore';
 
-import AuthContext from '../context/AuthContext';
+import AuthContext from '../services/auth/UserContext';
 
 export default function useAuth() {
   const {userRequest, setUserRequest} = useContext(AuthContext);
