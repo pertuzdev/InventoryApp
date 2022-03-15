@@ -12,7 +12,7 @@ import {alertOnFirebaseAuth} from '../../helpers/alerts/alertOnFirebaseAuth/aler
 import Button from '../../components/Button/Button';
 import SignupForm from '../../components/Form/SignupForm';
 import ActivityIndicator from '../../components/ActivityIndicator/ActivityIndicator';
-import {useUser, useUserAuth} from '../../services/auth/useUser';
+import {useUser, useUserAuth} from '../../hooks/useUser';
 
 const SignupScreen = ({navigation}) => {
   const {

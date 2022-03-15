@@ -18,7 +18,7 @@ import {
   GET_CURRENT_USER_SUCCESS,
   GET_CURRENT_USER_FAIL,
   RESET_ERROR,
-} from '../../helpers/constants/authConstants';
+} from '../helpers/constants/authConstants';
 
 export const signInWithCredentials = async ({email, password, dispatch}) => {
   dispatch({type: USER_SIGNIN_REQUEST});

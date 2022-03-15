@@ -2,10 +2,11 @@ import React, {useContext, useState, useEffect} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import auth from '@react-native-firebase/auth';
 
-import {useUser} from '../services/auth/useUser';
+import {useUser} from '../hooks/useUser';
 
 import AuthStack from './AuthStack';
 import HomeStack from './HomeStack';
+import {ItemsProvider} from '../context/ItemsContext';
 
 const Routes = () => {
   const {user, setCurrentUser} = useUser();
@@ -30,7 +31,13 @@ const Routes = () => {
 
   return (
     <NavigationContainer>
-      {user ? <HomeStack /> : <AuthStack />}
+      {user ? (
+        <ItemsProvider>
+          <HomeStack />
+        </ItemsProvider>
+      ) : (
+        <AuthStack />
+      )}
     </NavigationContainer>
   );
 };

@@ -1,7 +1,7 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import {View, Text, Image} from 'react-native';
 
-import {useUserAuth} from '../../services/auth/useUser';
+import {useUserAuth} from '../../hooks/useUser';
 
 import {styles} from './Header.styles';
 import {colors} from '../../styles/globalStyles';

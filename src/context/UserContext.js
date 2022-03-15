@@ -1,4 +1,4 @@
-import React, {useReducer, useState} from 'react';
+import React, {useReducer} from 'react';
 
 import {
   signUpWithCredentials,
@@ -7,9 +7,9 @@ import {
   signOut,
   setUser,
   resetUserError,
-} from './UserActions';
+} from '../actions/UserActions';
 
-import userReducer from './userReducers';
+import userReducer from '../reducers/userReducers';
 
 const UserContext = React.createContext({});
 
@@ -20,12 +20,6 @@ const initialState = {
 };
 
 export function UserProvider({children}) {
-  /*const [userRequest, setUserRequest] = useState({
-    user: null,
-    loading: false,
-    userStatusError: null,
-  }); */
-
   const [state, dispatch] = useReducer(userReducer, initialState);
 
   const {loading, user, error} = state;

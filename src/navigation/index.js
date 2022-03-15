@@ -1,5 +1,5 @@
 import React from 'react';
-import {UserProvider} from '../services/auth/UserContext';
+import {UserProvider} from '../context/UserContext';
 import Routes from './Routes';
 
 const Providers = () => {

@@ -11,7 +11,7 @@ import {
   USER_SIGNUP_FAIL,
   USER_SIGNUP_REQUEST,
   USER_SIGNUP_SUCCESS,
-} from '../../helpers/constants/authConstants';
+} from '../helpers/constants/authConstants';
 
 export default function userReducer(state, action) {
   switch (action.type) {

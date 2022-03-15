@@ -4,7 +4,7 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 
 import {styles} from './SearchScreen.styles';
 
-import useItems from '../../hooks/useItems';
+import {useItems} from '../../hooks/useItems';
 
 import ItemList from '../../components/ItemList/ItemList';
 import SearchHeader from '../../components/SearchHeader/SearchHeader';

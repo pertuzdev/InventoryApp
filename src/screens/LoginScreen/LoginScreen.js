@@ -5,6 +5,8 @@ import {useForm} from 'react-hook-form';
 
 import {GoogleSigninButton} from '@react-native-google-signin/google-signin';
 
+import {useUser, useUserAuth} from '../../hooks/useUser';
+
 import {styles} from './LoginScreen.styles';
 
 import {alertOnFirebaseAuth} from '../../helpers/alerts/alertOnFirebaseAuth/alertOnFirebaseAuth';
@@ -12,7 +14,6 @@ import {alertOnFirebaseAuth} from '../../helpers/alerts/alertOnFirebaseAuth/aler
 import ActivityIndicator from '../../components/ActivityIndicator/ActivityIndicator';
 import Button from '../../components/Button/Button';
 import LoginForm from '../../components/Form/LoginForm';
-import {useUser, useUserAuth} from '../../services/auth/useUser';
 
 const LoginScreen = ({navigation}) => {
   const {

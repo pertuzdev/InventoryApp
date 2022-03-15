@@ -5,7 +5,7 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import {styles} from './HomeScreen.styles';
 
 import useGetTotals from '../../hooks/useGetTotals';
-import useItems from '../../hooks/useItems';
+import {useItems} from '../../hooks/useItems';
 
 import Button from '../../components/Button/Button';
 import Header from '../../components/Header/Header';

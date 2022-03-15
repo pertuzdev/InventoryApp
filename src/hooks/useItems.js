@@ -1,17 +1,14 @@
-import React, {useEffect, useState} from 'react';
+import {useContext, useEffect} from 'react';
+import ItemsContext from '../context/ItemsContext';
 
-import getItems from '../services/firestore/getItems';
-
-export default function useItems() {
-  const [items, setItems] = useState([]);
-  const [loading, setLoading] = useState(false);
+export function useItems() {
+  const {items, listItems, loading, error} = useContext(ItemsContext);
 
   useEffect(() => {
-    setLoading(true);
-    const subscriber = getItems(itemsArray => setItems(itemsArray));
-    setLoading(false);
+    const subscriber = listItems();
+
     return () => subscriber();
   }, []);
 
-  return {items, loading};
+  return {items, loading, error};
 }
